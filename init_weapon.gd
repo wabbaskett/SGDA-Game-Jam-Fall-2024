@@ -16,6 +16,13 @@ func _ready():
 	print_debug("weapon mesh is: " + weapon_mesh.name)
 	load_weapon()
 
+func _input(event):
+	if event.is_action_pressed("weapon1"):
+		WEAPON_TYPE = load("res://meshes/weapons/scrubber/scrubber.tres")
+		load_weapon()
+	if event.is_action_pressed("weapon2"):
+		WEAPON_TYPE = load("res://meshes/weapons/shooter/shooter.tres")
+		load_weapon()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func load_weapon() -> void:

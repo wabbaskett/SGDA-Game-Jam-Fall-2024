@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://yeir6i333rcl"]
-
-[ext_resource type="PrismMesh" uid="uid://buh5pk5mf7wne" path="res://meshes/weapons/scrubber/scrubber_pl.tres" id="1_vpdtp"]
-
-[node name="Scrubber" type="MeshInstance3D"]
-mesh = ExtResource("1_vpdtp")

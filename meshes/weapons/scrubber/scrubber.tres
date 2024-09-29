@@ -7,6 +7,6 @@
 resource_local_to_scene = true
 script = ExtResource("2_34vxh")
 name = &"scrubber"
-position = Vector3(0, 0, 0)
+position = Vector3(0.265, -0.225, -0.495)
 rotation = Vector3(0, 0, 0)
 mesh = ExtResource("1_b1uuq")
