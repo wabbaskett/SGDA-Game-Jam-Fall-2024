@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpthk3owkday2"
-path.s3tc="res://.godot/imported/Blinds.png-f64f244a08db7ee6ac6f514ca033a109.s3tc.ctex"
+uid="uid://dsv4jm4vydflb"
+path.s3tc="res://.godot/imported/orange.png-6785d3f8216fd22318e8ea839823715b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Models/textures/Blinds.png"
-dest_files=["res://.godot/imported/Blinds.png-f64f244a08db7ee6ac6f514ca033a109.s3tc.ctex"]
+source_file="res://textures/orange.png"
+dest_files=["res://.godot/imported/orange.png-6785d3f8216fd22318e8ea839823715b.s3tc.ctex"]
 
 [params]
 
