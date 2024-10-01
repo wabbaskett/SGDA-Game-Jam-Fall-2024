@@ -8,12 +8,10 @@ extends Node3D
 		if Engine.is_editor_hint():
 			load_weapon()
 
-@onready var weapon_mesh : MeshInstance3D = %WeaponMesh
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	print_debug("weapon mesh is: " + weapon_mesh.name)
 	load_weapon()
 
 func _input(event):
@@ -26,6 +24,7 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func load_weapon() -> void:
-	weapon_mesh.mesh = WEAPON_TYPE.mesh
+	var scene_instance = WEAPON_TYPE.weaponScene.instantiate()
+	add_child(scene_instance)
 	position = WEAPON_TYPE.position
 	rotation_degrees = WEAPON_TYPE.rotation

@@ -25,6 +25,16 @@ albedo_texture = ExtResource("5_i1syg")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ah60w"]
 albedo_texture = ExtResource("6_07nfb")
 
+[sub_resource type="Animation" id="Animation_blj6y"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_5d4ym"]
 resource_name = "shoot"
 length = 0.4
@@ -51,16 +61,6 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0, 0, 1, 0, 0.4, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_blj6y"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cylinder")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wjwn0"]
 _data = {
 "RESET": SubResource("Animation_blj6y"),
@@ -68,6 +68,7 @@ _data = {
 }
 
 [node name="revolverFINAL" instance=ExtResource("1_hjrd0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Frame" parent="." index="0"]
 material_override = SubResource("StandardMaterial3D_uc5c7")

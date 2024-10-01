@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://b4e550r2v7n5u"]
 
-[ext_resource type="PrismMesh" uid="uid://buh5pk5mf7wne" path="res://meshes/weapons/scrubber/scrubber_pl.tres" id="1_b1uuq"]
 [ext_resource type="Script" path="res://meshes/weapons/Weapons.gd" id="2_34vxh"]
+[ext_resource type="PackedScene" uid="uid://b46gl8o35ykpo" path="res://meshes/weapons/scrubber/scrubber.tscn" id="2_bqir7"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_34vxh")
 name = &"scrubber"
-position = Vector3(0.265, -0.225, -0.495)
-rotation = Vector3(0, 0, 0)
-mesh = ExtResource("1_b1uuq")
+position = Vector3(0.49, -0.425, -0.495)
+rotation = Vector3(0, 180, 0)
+weaponScene = ExtResource("2_bqir7")
