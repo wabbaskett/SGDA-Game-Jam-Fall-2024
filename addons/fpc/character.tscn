@@ -380,8 +380,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
 
-[node name="revolverFINAL" parent="Head/Camera" instance=ExtResource("2_glcsj")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 6.99383e-08, 0, -6.99383e-08, 0.4, 0.556137, -0.530696, -0.643656)
+[node name="WeaponRig" type="Node3D" parent="Head/Camera"]
+
+[node name="Weapon" parent="Head/Camera/WeaponRig" instance=ExtResource("2_rpwmn")]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.265, -0.225, -0.495)
 
 [node name="HeadbobAnimation" type="AnimationPlayer" parent="Head"]
 libraries = {
