@@ -1,0 +1,8 @@
+[gd_resource type="CapsuleMesh" load_steps=2 format=3 uid="uid://bs0nylb3t2fqk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pvi2"]
+
+[resource]
+material = SubResource("StandardMaterial3D_5pvi2")
+radius = 0.05
+height = 0.25
