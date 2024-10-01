@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
-[ext_resource type="PackedScene" uid="uid://dsxk1e43r2x50" path="res://revolver_final.tscn" id="2_glcsj"]
+[ext_resource type="PackedScene" uid="uid://bwffp5l7qk167" path="res://weapon.tscn" id="2_rpwmn"]
 [ext_resource type="Script" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
 
