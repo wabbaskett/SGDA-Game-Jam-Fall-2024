@@ -18,7 +18,7 @@ sky = SubResource("Sky_2iust")
 tonemap_mode = 1
 ssao_enabled = true
 
-[node name="Game" type="Node3D"]
+[node name="Level" type="Node3D"]
 
 [node name="Character" parent="." instance=ExtResource("1_4x8x7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.30982, 3.56549, 0)
@@ -30,23 +30,20 @@ jump_velocity = 6.0
 controller_sensitivity = 0.08
 in_air_momentum = false
 
+[node name="UI" parent="." instance=ExtResource("5_bmqf0")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20rw3")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.87959, -0.436605, 0.188936, 0, 0.397148, 0.917755, -0.475732, -0.807248, 0.349328, 0, 0, 0)
-light_energy = 2.0
 shadow_enabled = true
-
-[node name="terrain" type="Node3D" parent="."]
 
 [node name="Map" parent="." instance=ExtResource("2_ce245")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 2.76413, 0, 9.08512)
 
-[node name="DeskFINAL" parent="." instance=ExtResource("3_f7ejf")]
-transform = Transform3D(6.71423, 0, -4.34962, 0, 8, 0, 4.34962, 0, 6.71423, 20.821, 1.80756, -77.2174)
+[node name="DeskFINAL" parent="Map" instance=ExtResource("3_f7ejf")]
+transform = Transform3D(0.335712, 0, -0.217481, 0, 0.4, 0, 0.217481, 0, 0.335712, 0.902843, 0.090378, -4.31513)
 
-[node name="shelf" parent="." instance=ExtResource("4_pgp8t")]
-transform = Transform3D(-0.446484, 0, 6.98575, 0, 7, 0, -6.98575, 0, -0.446484, 90.1367, 2, -38)
-
-[node name="UI" parent="." instance=ExtResource("5_bmqf0")]
+[node name="shelf" parent="Map" instance=ExtResource("4_pgp8t")]
+transform = Transform3D(-0.0223242, 0, 0.349288, 0, 0.35, 0, -0.349288, 0, -0.0223242, 4.36863, 0.1, -2.35426)

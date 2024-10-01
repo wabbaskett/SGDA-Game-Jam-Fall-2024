@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://8urhqhyhfne6" path="res://menus/menu_theme.tres" id="1_d48ww"]
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_wpy4m"]
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="Main Menu" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,6 +13,7 @@ theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
+script = ExtResource("1_wpy4m")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -30,7 +31,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-script = ExtResource("1_wpy4m")
 
 [node name="Start Button" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
@@ -53,5 +53,5 @@ focus_neighbor_bottom = NodePath("../Start Button")
 theme = ExtResource("1_d48ww")
 text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/Buttons/Start Button" to="VBoxContainer/Buttons" method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/Exit Button" to="VBoxContainer/Buttons" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Exit Button" to="." method="_on_exit_button_pressed"]
