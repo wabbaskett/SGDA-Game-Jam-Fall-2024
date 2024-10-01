@@ -1,9 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=25 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
 [ext_resource type="PackedScene" uid="uid://bwffp5l7qk167" path="res://weapon.tscn" id="2_rpwmn"]
+[ext_resource type="PrismMesh" uid="uid://buh5pk5mf7wne" path="res://meshes/weapons/scrubber/scrubber_pl.tres" id="3_0ydfx"]
 [ext_resource type="Script" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
+[ext_resource type="Script" path="res://meshes/weapons/Weapons.gd" id="4_jo6ei"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -148,6 +150,14 @@ _data = {
 "RESET": SubResource("Animation_j8cx7"),
 "crouch": SubResource("Animation_5ec5e")
 }
+
+[sub_resource type="Resource" id="Resource_pi3i6"]
+resource_local_to_scene = true
+script = ExtResource("4_jo6ei")
+name = &"scrubber"
+position = Vector3(0.265, -0.225, -0.495)
+rotation = Vector3(0, 0, 0)
+mesh = ExtResource("3_0ydfx")
 
 [sub_resource type="Animation" id="Animation_gh776"]
 resource_name = "RESET"
@@ -380,11 +390,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
 
-
 [node name="WeaponRig" type="Node3D" parent="Head/Camera"]
 
 [node name="Weapon" parent="Head/Camera/WeaponRig" instance=ExtResource("2_rpwmn")]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.265, -0.225, -0.495)
+WEAPON_TYPE = SubResource("Resource_pi3i6")
 
 [node name="HeadbobAnimation" type="AnimationPlayer" parent="Head"]
 libraries = {
