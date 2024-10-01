@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://8c5l207wvev3"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_4x8x7"]
-[ext_resource type="PackedScene" path="res://map.tscn" id="2_ce245"]
-[ext_resource type="PackedScene" path="res://desk_final.tscn" id="3_f7ejf"]
-[ext_resource type="PackedScene" path="res://shelf.tscn" id="4_pgp8t"]
+[ext_resource type="PackedScene" uid="uid://i7jovwrwaogl" path="res://map.tscn" id="2_ce245"]
+[ext_resource type="PackedScene" uid="uid://blmcha86tbi6b" path="res://desk_final.tscn" id="3_f7ejf"]
+[ext_resource type="PackedScene" uid="uid://dhkotd14k7v1n" path="res://shelf.tscn" id="4_pgp8t"]
 [ext_resource type="PackedScene" uid="uid://c54vrlkytlw66" path="res://ui/ui.tscn" id="5_bmqf0"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edcox"]
@@ -27,11 +27,6 @@ sprint_speed = 12.0
 crouch_speed = 2.0
 acceleration = 20.0
 jump_velocity = 6.0
-LEFT = "move_left"
-RIGHT = "move_right"
-FORWARD = "move_forward"
-BACKWARD = "move_backward"
-SPRINT = "LShift"
 controller_sensitivity = 0.08
 in_air_momentum = false
 
