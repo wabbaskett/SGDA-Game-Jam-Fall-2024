@@ -16,10 +16,20 @@ extends CharacterBody3D
 ## The speed that the character moves at when crouching.
 @export var crouch_speed : float = 1.0
 
+@export var grapple_speed : float = 10.0
+
 ## How fast the character speeds up and slows down when Motion Smoothing is on.
 @export var acceleration : float = 10.0
+## How fast we can accelerate ourselfs in the air
+@export var air_acceleration : float = 0.02
 ## How high the player jumps.
 @export var jump_velocity : float = 4.5
+## How fast the grapple accelerates the player
+@export var grapple_acceleration : float = 10.0
+## How strong the grapple adjusment is when we over shoot
+@export var grapple_adjustment : float = 0.01
+## Minimun distance to the grapple target, once reached it will stop grappling
+@export var grapple_stop_distance : float = 1.0
 ## How far the player turns when the mouse is moved.
 @export var mouse_sensitivity : float = 0.1
 ## Invert the Y input for mouse and joystick
@@ -37,6 +47,7 @@ extends CharacterBody3D
 @export var JUMP_ANIMATION : AnimationPlayer
 @export var CROUCH_ANIMATION : AnimationPlayer
 @export var COLLISION_MESH : CollisionShape3D
+@export var GRAPPLE_CAST : RayCast3D
 
 @export_group("Controls")
 # We are using UI controls because they are built into Godot Engine so they can be used right away
@@ -49,6 +60,7 @@ extends CharacterBody3D
 @export var PAUSE : String = "ui_cancel"
 @export var CROUCH : String = "crouch"
 @export var SPRINT : String = "sprint"
+@export var GRAPPLE : String = "grapple"
 
 # Uncomment if you want controller support
 @export var controller_sensitivity : float = 0.035
@@ -66,8 +78,10 @@ extends CharacterBody3D
 @export var motion_smoothing : bool = true
 @export var sprint_enabled : bool = true
 @export var crouch_enabled : bool = true
+@export var grappling_enabled : bool = true
 @export_enum("Hold to Crouch", "Toggle Crouch") var crouch_mode : int = 0
 @export_enum("Hold to Sprint", "Toggle Sprint") var sprint_mode : int = 0
+@export_enum("Hold to Grapple", "Toggle Grappke") var grapple_mode : int = 0
 ## Wether sprinting should effect FOV.
 @export var dynamic_fov : bool = true
 ## If the player holds down the jump button, should the player keep hopping.
@@ -90,6 +104,15 @@ var state : String = "normal"
 var low_ceiling : bool = false # This is for when the cieling is too low and the player needs to crouch.
 var was_on_floor : bool = true # Was the player on the floor last frame (for landing animation)
 
+# grapple hook variables
+var grappling = false
+var hookpoint = Vector3()
+var hookpoint_get = false
+var direction_to_hook : Vector3
+var distance_to_hook : float = INF
+var smallest_distance_to_hook : float = INF
+var velocity_adjustment : float = 0.0
+
 # The reticle should always have a Control node as the root
 var RETICLE : Control
 
@@ -102,6 +125,8 @@ var mouseInput : Vector2 = Vector2(0,0)
 func _ready():
 	#It is safe to comment this line if your game doesn't start with the mouse captured
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	print(in_air_momentum)
 	
 	# If the controller is rotated in a certain direction for game design purposes, redirect this rotation into the head.
 	HEAD.rotation.y = rotation.y
@@ -176,6 +201,22 @@ func _physics_process(delta):
 	
 	handle_jumping()
 	
+	#handle_grappling()
+	if hookpoint_get:
+		direction_to_hook = transform.origin.direction_to(hookpoint)
+		distance_to_hook = transform.origin.distance_to(hookpoint)
+		velocity += (direction_to_hook * (grapple_acceleration + velocity_adjustment) * delta)
+		print("Min Dist: " + str(smallest_distance_to_hook) + " Current Dist: " + str(distance_to_hook))
+		if distance_to_hook < smallest_distance_to_hook:
+			smallest_distance_to_hook = distance_to_hook
+			velocity_adjustment = 0.0
+		else:
+			print("bigger")
+			velocity_adjustment += grapple_adjustment
+			#velocity += (direction_to_hook * (grapple_acceleration + velocity_adjustment)* delta)
+			#transform.origin = lerp(transform.origin, hookpoint, 0.05)
+			
+	
 	var input_dir = Vector2.ZERO
 	if !immobile: # Immobility works by interrupting user input, so other forces can still be applied to the player
 		input_dir = Input.get_vector(LEFT, RIGHT, FORWARD, BACKWARD)
@@ -217,12 +258,16 @@ func handle_jumping():
 					JUMP_ANIMATION.play("jump", 0.25)
 				velocity.y += jump_velocity
 
+#func handle_grappling():
+	#if hookpoint_get:
+		#var direction_to_hook = transform.origin.direction_to(hookpoint)
+		#var 
+		#velocity += * grapple_acceleration
 
 func handle_movement(delta, input_dir):
 	var direction = input_dir.rotated(-HEAD.rotation.y)
 	direction = Vector3(direction.x, 0, direction.y)
 	move_and_slide()
-	
 	if in_air_momentum:
 		if is_on_floor():
 			if motion_smoothing:
@@ -231,10 +276,13 @@ func handle_movement(delta, input_dir):
 			else:
 				velocity.x = direction.x * speed
 				velocity.z = direction.z * speed
+		else: 
+			velocity.x += direction.x * air_acceleration
+			velocity.z += direction.z * air_acceleration
 	else:
 		if motion_smoothing:
-			velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
-			velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
+			velocity.x = lerp(velocity.x, (direction.x * speed), acceleration * delta)
+			velocity.z = lerp(velocity.z, (direction.z * speed), acceleration * delta)
 		else:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
@@ -300,17 +348,37 @@ func handle_state(moving):
 					"crouching":
 						if !$CrouchCeilingDetection.is_colliding():
 							enter_normal_state()
+							
+	if grappling_enabled: 
+		if grapple_mode == 0:
+			if Input.is_action_pressed(GRAPPLE) :
+				if GRAPPLE_CAST.is_colliding() and smallest_distance_to_hook > grapple_stop_distance:
+					if Input.is_action_just_pressed(GRAPPLE):
+						enter_grapple_state()
+				elif smallest_distance_to_hook < grapple_stop_distance :
+					enter_normal_state()
+			elif state == "grappling":
+				enter_normal_state()
+						
+		elif grapple_mode == 1:
+			if Input.is_action_just_pressed(GRAPPLE):
+				if GRAPPLE_CAST.is_colliding():
+					if not grappling:
+						enter_grapple_state()
 
 
 # Any enter state function should only be called once when you want to enter that state, not every frame.
 
 func enter_normal_state():
-	#print("entering normal state")
+	print("entering normal state")
 	var prev_state = state
 	if prev_state == "crouching":
 		CROUCH_ANIMATION.play_backwards("crouch")
 	state = "normal"
 	speed = base_speed
+	grappling = false
+	hookpoint_get = false
+	smallest_distance_to_hook = INF
 
 func enter_crouch_state():
 	#print("entering crouch state")
@@ -327,6 +395,20 @@ func enter_sprint_state():
 	state = "sprinting"
 	speed = sprint_speed
 
+func enter_grapple_state():
+	print("entering grapple state")
+	var prev_state = state
+	if prev_state == "crouching":
+		CROUCH_ANIMATION.play_backwards("crouch")
+	state = "grappling"
+	grappling = true
+	speed = grapple_speed
+	if not hookpoint_get:
+		hookpoint = GRAPPLE_CAST.get_collision_point()
+		hookpoint_get = true
+		distance_to_hook = transform.origin.distance_to(hookpoint)
+		smallest_distance_to_hook = INF
+	
 
 func update_camera_fov():
 	if state == "sprinting":

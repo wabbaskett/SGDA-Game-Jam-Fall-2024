@@ -28,7 +28,6 @@ crouch_speed = 2.0
 acceleration = 20.0
 jump_velocity = 6.0
 controller_sensitivity = 0.08
-in_air_momentum = false
 
 [node name="UI" parent="." instance=ExtResource("5_bmqf0")]
 
