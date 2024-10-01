@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
-[ext_resource type="PackedScene" uid="uid://bwffp5l7qk167" path="res://weapon.tscn" id="2_rpwmn"]
+[ext_resource type="PackedScene" uid="uid://dsxk1e43r2x50" path="res://revolver_final.tscn" id="2_glcsj"]
 [ext_resource type="Script" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
 
@@ -380,11 +380,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
 
-
-[node name="WeaponRig" type="Node3D" parent="Head/Camera"]
-
-[node name="Weapon" parent="Head/Camera/WeaponRig" instance=ExtResource("2_rpwmn")]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.265, -0.225, -0.495)
+[node name="revolverFINAL" parent="Head/Camera" instance=ExtResource("2_glcsj")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 6.99383e-08, 0, -6.99383e-08, 0.4, 0.556137, -0.530696, -0.643656)
 
 [node name="HeadbobAnimation" type="AnimationPlayer" parent="Head"]
 libraries = {

@@ -1,7 +1,0 @@
-[gd_resource type="PrismMesh" load_steps=2 format=3 uid="uid://buh5pk5mf7wne"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obff4"]
-
-[resource]
-material = SubResource("StandardMaterial3D_obff4")
-size = Vector3(0.155, 0.225, 0.59)
