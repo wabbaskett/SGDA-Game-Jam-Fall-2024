@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxjxvqmf4boxq"
-path.s3tc="res://.godot/imported/green.png-b4f8ddc6b00d4e627f0e027e2e1193bf.s3tc.ctex"
+uid="uid://cqpfni81l2atl"
+path.s3tc="res://.godot/imported/Cylinder.png-69fbb5b2275648d6d8e0fd9a1f7eb04a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/green.png"
-dest_files=["res://.godot/imported/green.png-b4f8ddc6b00d4e627f0e027e2e1193bf.s3tc.ctex"]
+source_file="res://Models/textures/Cylinder.png"
+dest_files=["res://.godot/imported/Cylinder.png-69fbb5b2275648d6d8e0fd9a1f7eb04a.s3tc.ctex"]
 
 [params]
 
