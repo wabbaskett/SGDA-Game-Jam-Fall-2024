@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1nw72pbfi8wg"]
+[gd_scene load_steps=9 format=3 uid="uid://8c5l207wvev3"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_4x8x7"]
 [ext_resource type="PackedScene" uid="uid://i7jovwrwaogl" path="res://map.tscn" id="2_ce245"]
 [ext_resource type="PackedScene" uid="uid://blmcha86tbi6b" path="res://desk_final.tscn" id="3_f7ejf"]
 [ext_resource type="PackedScene" uid="uid://dhkotd14k7v1n" path="res://shelf.tscn" id="4_pgp8t"]
+[ext_resource type="PackedScene" uid="uid://c54vrlkytlw66" path="res://ui/ui.tscn" id="5_bmqf0"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edcox"]
 ground_color = Color(0.160784, 0.815686, 0.905882, 1)
@@ -17,7 +18,7 @@ sky = SubResource("Sky_2iust")
 tonemap_mode = 1
 ssao_enabled = true
 
-[node name="test_world" type="Node3D"]
+[node name="Level" type="Node3D"]
 
 [node name="Character" parent="." instance=ExtResource("1_4x8x7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.30982, 3.56549, 0)
@@ -26,29 +27,23 @@ sprint_speed = 12.0
 crouch_speed = 2.0
 acceleration = 20.0
 jump_velocity = 6.0
-LEFT = "move_left"
-RIGHT = "move_right"
-FORWARD = "move_forward"
-BACKWARD = "move_backward"
-SPRINT = "LShift"
 controller_sensitivity = 0.08
 in_air_momentum = false
+
+[node name="UI" parent="." instance=ExtResource("5_bmqf0")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20rw3")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.87959, -0.436605, 0.188936, 0, 0.397148, 0.917755, -0.475732, -0.807248, 0.349328, 0, 0, 0)
-light_energy = 2.0
 shadow_enabled = true
-
-[node name="terrain" type="Node3D" parent="."]
 
 [node name="Map" parent="." instance=ExtResource("2_ce245")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 2.76413, 0, 9.08512)
 
-[node name="DeskFINAL" parent="." instance=ExtResource("3_f7ejf")]
-transform = Transform3D(6.71423, 0, -4.34962, 0, 8, 0, 4.34962, 0, 6.71423, 20.821, 1.80756, -77.2174)
+[node name="DeskFINAL" parent="Map" instance=ExtResource("3_f7ejf")]
+transform = Transform3D(0.335712, 0, -0.217481, 0, 0.4, 0, 0.217481, 0, 0.335712, 0.902843, 0.090378, -4.31513)
 
-[node name="shelf" parent="." instance=ExtResource("4_pgp8t")]
-transform = Transform3D(-0.446484, 0, 6.98575, 0, 7, 0, -6.98575, 0, -0.446484, 90.1367, 2, -38)
+[node name="shelf" parent="Map" instance=ExtResource("4_pgp8t")]
+transform = Transform3D(-0.0223242, 0, 0.349288, 0, 0.35, 0, -0.349288, 0, -0.0223242, 4.36863, 0.1, -2.35426)

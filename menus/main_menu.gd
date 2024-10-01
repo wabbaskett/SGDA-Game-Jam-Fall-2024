@@ -3,10 +3,10 @@ extends Control
 
 @onready var buttons_v_box: VBoxContainer = %Buttons
 
-signal start_game()
+var level_scene = preload("res://level.tscn").instantiate()
 
 func _on_start_button_pressed() -> void:
-	start_game.emit()
+	get_tree().root.add_child(level_scene)
 	hide()
 	
 func _on_exit_button_pressed() -> void:
