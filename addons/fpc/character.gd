@@ -48,6 +48,8 @@ extends CharacterBody3D
 @export var CROUCH_ANIMATION : AnimationPlayer
 @export var COLLISION_MESH : CollisionShape3D
 @export var GRAPPLE_CAST : RayCast3D
+@export var ROPE : MeshInstance3D
+@export var GRAPPLESTART: Marker3D
 
 @export_group("Controls")
 # We are using UI controls because they are built into Godot Engine so they can be used right away
@@ -112,6 +114,7 @@ var direction_to_hook : Vector3
 var distance_to_hook : float = INF
 var smallest_distance_to_hook : float = INF
 var velocity_adjustment : float = 0.0
+var rope
 
 # The reticle should always have a Control node as the root
 var RETICLE : Control
@@ -125,7 +128,7 @@ var mouseInput : Vector2 = Vector2(0,0)
 func _ready():
 	#It is safe to comment this line if your game doesn't start with the mouse captured
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	ROPE.transform = GRAPPLESTART.transform
 	print(in_air_momentum)
 	
 	# If the controller is rotated in a certain direction for game design purposes, redirect this rotation into the head.
@@ -201,21 +204,7 @@ func _physics_process(delta):
 	
 	handle_jumping()
 	
-	#handle_grappling()
-	if hookpoint_get:
-		direction_to_hook = transform.origin.direction_to(hookpoint)
-		distance_to_hook = transform.origin.distance_to(hookpoint)
-		velocity += (direction_to_hook * (grapple_acceleration + velocity_adjustment) * delta)
-		print("Min Dist: " + str(smallest_distance_to_hook) + " Current Dist: " + str(distance_to_hook))
-		if distance_to_hook < smallest_distance_to_hook:
-			smallest_distance_to_hook = distance_to_hook
-			velocity_adjustment = 0.0
-		else:
-			print("bigger")
-			velocity_adjustment += grapple_adjustment
-			#velocity += (direction_to_hook * (grapple_acceleration + velocity_adjustment)* delta)
-			#transform.origin = lerp(transform.origin, hookpoint, 0.05)
-			
+	
 	
 	var input_dir = Vector2.ZERO
 	if !immobile: # Immobility works by interrupting user input, so other forces can still be applied to the player
@@ -228,6 +217,25 @@ func _physics_process(delta):
 	low_ceiling = $CrouchCeilingDetection.is_colliding()
 	
 	handle_state(input_dir)
+	
+	#handle_grappling()
+	if hookpoint_get:
+		
+		direction_to_hook = transform.origin.direction_to(hookpoint)
+		distance_to_hook = transform.origin.distance_to(hookpoint)
+		orient_grapple_rope()
+		velocity += (direction_to_hook * (grapple_acceleration + velocity_adjustment) * delta)
+		#print("Min Dist: " + str(smallest_distance_to_hook) + " Current Dist: " + str(distance_to_hook))
+		if distance_to_hook < smallest_distance_to_hook:
+			smallest_distance_to_hook = distance_to_hook
+			velocity_adjustment = 0.0
+		else:
+			print("bigger")
+			velocity_adjustment += grapple_adjustment
+			#velocity += (direction_to_hook * (grapple_acceleration + velocity_adjustment)* delta)
+			#transform.origin = lerp(transform.origin, hookpoint, 0.05)
+			
+	
 	if dynamic_fov: # This may be changed to an AnimationPlayer
 		update_camera_fov()
 	
@@ -235,7 +243,7 @@ func _physics_process(delta):
 		headbob_animation(input_dir)
 	
 	if jump_animation:
-		if !was_on_floor and is_on_floor(): # The player just landed
+		if !was_on_floor and is_on_floor() and state != "grappling": # The player just landed
 			match randi() % 2: #TODO: Change this to detecting velocity direction
 				0:
 					JUMP_ANIMATION.play("land_left", 0.25)
@@ -310,7 +318,7 @@ func handle_head_rotation():
 func handle_state(moving):
 	if sprint_enabled:
 		if sprint_mode == 0:
-			if Input.is_action_pressed(SPRINT) and state != "crouching":
+			if Input.is_action_pressed(SPRINT) and state != "crouching" and state != "grappling":
 				if moving:
 					if state != "sprinting":
 						enter_sprint_state()
@@ -377,6 +385,8 @@ func enter_normal_state():
 	state = "normal"
 	speed = base_speed
 	grappling = false
+	ROPE.visible = false
+	ROPE.scale = Vector3(1, 1, 1)
 	hookpoint_get = false
 	smallest_distance_to_hook = INF
 
@@ -402,13 +412,19 @@ func enter_grapple_state():
 		CROUCH_ANIMATION.play_backwards("crouch")
 	state = "grappling"
 	grappling = true
+	ROPE.visible = true
 	speed = grapple_speed
 	if not hookpoint_get:
 		hookpoint = GRAPPLE_CAST.get_collision_point()
 		hookpoint_get = true
+		orient_grapple_rope()
 		distance_to_hook = transform.origin.distance_to(hookpoint)
 		smallest_distance_to_hook = INF
 	
+
+func orient_grapple_rope():
+	ROPE.look_at_from_position(GRAPPLESTART.global_position + Vector3(0,0,.5), hookpoint)
+	ROPE.scale = Vector3(1, 1, absf(GRAPPLESTART.position.distance_to(hookpoint)))
 
 func update_camera_fov():
 	if state == "sprinting":
