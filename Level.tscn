@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://8c5l207wvev3"]
+[gd_scene load_steps=8 format=3 uid="uid://8c5l207wvev3"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_4x8x7"]
 [ext_resource type="PackedScene" uid="uid://i7jovwrwaogl" path="res://map.tscn" id="2_ce245"]
 [ext_resource type="PackedScene" uid="uid://blmcha86tbi6b" path="res://desk_final.tscn" id="3_f7ejf"]
 [ext_resource type="PackedScene" uid="uid://dhkotd14k7v1n" path="res://shelf.tscn" id="4_pgp8t"]
-[ext_resource type="PackedScene" uid="uid://c54vrlkytlw66" path="res://ui/ui.tscn" id="5_bmqf0"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edcox"]
 ground_color = Color(0.160784, 0.815686, 0.905882, 1)
@@ -28,8 +27,6 @@ crouch_speed = 2.0
 acceleration = 20.0
 jump_velocity = 6.0
 controller_sensitivity = 0.08
-
-[node name="UI" parent="." instance=ExtResource("5_bmqf0")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20rw3")

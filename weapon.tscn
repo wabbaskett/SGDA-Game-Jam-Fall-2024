@@ -7,3 +7,4 @@
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.49, -0.425, -0.495)
 script = ExtResource("1_ychb4")
 WEAPON_TYPE = ExtResource("1_lkrfk")
+WEAPON = null

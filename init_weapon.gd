@@ -7,24 +7,44 @@ extends Node3D
 		WEAPON_TYPE = value
 		if Engine.is_editor_hint():
 			load_weapon()
+@export var WEAPON: Array[Weapons]
 
+var focused : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	load_weapon()
 
+func nextWeapon():
+	if focused >= WEAPON.size() - 1 :
+		focused = 0
+	else :
+		focused += 1
+
+func previousWeapon():
+	if focused <= 0:
+		focused = WEAPON.size() - 1
+	else :
+		focused -= 1
+	
 func _input(event):
-	if event.is_action_pressed("weapon1"):
-		WEAPON_TYPE = load("res://meshes/weapons/scrubber/scrubber.tres")
-		load_weapon()
-	if event.is_action_pressed("weapon2"):
-		WEAPON_TYPE = load("res://meshes/weapons/shooter/shooter.tres")
-		load_weapon()
+	if event.is_action_pressed("next_weapon"):
+		nextWeapon()
+	if event.is_action_pressed("previous_weapon"):
+		previousWeapon()
+	load_weapon()
+#
+#func _input(event):
+	#if event.is_action_pressed("weapon1"):
+		#WEAPON_TYPE = load("res://meshes/weapons/scrubber/scrubber.tres")
+		#load_weapon()
+	#if event.is_action_pressed("weapon2"):
+		#WEAPON_TYPE = load("res://meshes/weapons/shooter/shooter.tres")
+		#load_weapon()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func load_weapon() -> void:
-	var scene_instance = WEAPON_TYPE.weaponScene.instantiate()
+func load_weapon():
+	var scene_instance = WEAPON[focused].weaponScene.instantiate()
 	add_child(scene_instance)
-	position = WEAPON_TYPE.position
-	rotation_degrees = WEAPON_TYPE.rotation
+	position = WEAPON[focused].position
+	rotation_degrees = WEAPON[focused].rotation
