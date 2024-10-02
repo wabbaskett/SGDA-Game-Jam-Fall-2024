@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c54vrlkytlw66"]
+[gd_scene load_steps=4 format=3 uid="uid://c54vrlkytlw66"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_fhuq0"]
 [ext_resource type="Theme" uid="uid://cr8plgujluwta" path="res://ui/ui_theme.tres" id="2_f4cni"]
+[ext_resource type="Script" path="res://ui/weapon_ui.gd" id="3_attpi"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_fhuq0")
@@ -16,45 +17,94 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+[node name="SplitContainer" type="SplitContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 
-[node name="Objective" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+[node name="Weapons" type="VBoxContainer" parent="Control/MarginContainer/SplitContainer" node_paths=PackedStringArray("WEAPON_SLOTS")]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+script = ExtResource("3_attpi")
+WEAPON_SLOTS = [NodePath("WeaponSlot1"), NodePath("WeaponSlot2"), NodePath("WeaponSlot3"), NodePath("WeaponSlot4"), NodePath("WeaponSlot5")]
+scale_increase = 1.5
+
+[node name="WeaponSlot1" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="WeaponSlot2" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="WeaponSlot3" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="WeaponSlot4" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="WeaponSlot5" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Objective" type="HBoxContainer" parent="Control/MarginContainer/SplitContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Objective" type="Label" parent="Control/MarginContainer/VBoxContainer/Objective"]
+[node name="Objective" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Objective"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_f4cni")
 text = "Objective: Find the Mold"
 
-[node name="Timer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+[node name="Timer" type="HBoxContainer" parent="Control/MarginContainer/SplitContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HoursTimer" type="Label" parent="Control/MarginContainer/VBoxContainer/Timer"]
+[node name="TimerText" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
+layout_mode = 2
+text = "Time Elapsed:"
+
+[node name="HoursTimer" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_f4cni")
 
-[node name="MinutesTimer" type="Label" parent="Control/MarginContainer/VBoxContainer/Timer"]
+[node name="MinutesTimer" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_f4cni")
 
-[node name="SecondsTimer" type="Label" parent="Control/MarginContainer/VBoxContainer/Timer"]
+[node name="SecondsTimer" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_f4cni")
 
-[node name="Timer" type="Timer" parent="Control/MarginContainer/VBoxContainer/Timer"]
+[node name="Timer" type="Timer" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
 autostart = true
 
-[connection signal="timeout" from="Control/MarginContainer/VBoxContainer/Timer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Control/MarginContainer/SplitContainer/VBoxContainer/Timer/Timer" to="." method="_on_timer_timeout"]
