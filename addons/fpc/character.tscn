@@ -395,7 +395,7 @@ transform = Transform3D(0.992549, 0.0135535, 0.121086, 0.000242775, 0.993571, -0
 WEAPON_TYPE = ExtResource("3_j70n8")
 
 [node name="GrappleStart" type="Marker3D" parent="Head/Camera/WeaponRig"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 1.55)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 0)
 
 [node name="Rope" parent="Head/Camera/WeaponRig/GrappleStart" instance=ExtResource("6_8w2y7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 0)
