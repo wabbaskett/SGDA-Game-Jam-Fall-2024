@@ -11,8 +11,9 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_evoc8"]
 size = Vector2(500, 25)
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("health_bar")]
 script = ExtResource("1_fhuq0")
+health_bar = NodePath("Control/MarginContainer/SplitContainer/Weapons & Health/HealthBar")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -41,7 +42,7 @@ layout_mode = 2
 [node name="Weapons & Health" type="VSplitContainer" parent="Control/MarginContainer/SplitContainer"]
 layout_mode = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Control/MarginContainer/SplitContainer/Weapons & Health"]
+[node name="HealthBar" type="TextureProgressBar" parent="Control/MarginContainer/SplitContainer/Weapons & Health"]
 layout_mode = 2
 value = 100.0
 texture_progress = SubResource("PlaceholderTexture2D_evoc8")

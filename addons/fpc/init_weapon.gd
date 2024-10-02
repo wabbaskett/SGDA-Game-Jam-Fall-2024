@@ -2,15 +2,14 @@
 
 extends Node3D
 
-#@export var WEAPON_TYPE : Weapons:
-	#set(value):
-		#WEAPON_TYPE = value
-		#if Engine.is_editor_hint():
-			#load_weapon()
+@export var WEAPON_TYPE : Weapons:
+	set(value):
+		WEAPON_TYPE = value
+		if Engine.is_editor_hint():
+			load_weapon()
 @export var WEAPON: Array[Weapons]
 
 var focused : int = 0
-var current_instance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,9 +45,7 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func load_weapon():
-	remove_child(current_instance)
-	current_instance = WEAPON[focused].weaponScene.instantiate()
-	add_child(current_instance)
-	print(str(get_child_count()))
+	var scene_instance = WEAPON[focused].weaponScene.instantiate()
+	add_child(scene_instance)
 	position = WEAPON[focused].position
 	rotation_degrees = WEAPON[focused].rotation

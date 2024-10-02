@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=28 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
 [ext_resource type="PackedScene" uid="uid://bwffp5l7qk167" path="res://weapon.tscn" id="2_rpwmn"]
@@ -154,15 +154,7 @@ _data = {
 "crouch": SubResource("Animation_5ec5e")
 }
 
-[sub_resource type="Resource" id="Resource_ul5sk"]
-resource_local_to_scene = true
-script = ExtResource("3_a8dxt")
-name = &"scrubber"
-position = Vector3(0.49, -0.425, -0.495)
-rotation = Vector3(0, 180, 0)
-weaponScene = ExtResource("4_fjnw3")
-
-[sub_resource type="Resource" id="Resource_a3j83"]
+[sub_resource type="Resource" id="Resource_ntqs4"]
 resource_local_to_scene = true
 script = ExtResource("3_a8dxt")
 name = &"scrubber"
@@ -411,8 +403,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Weapon" parent="Head/Camera/WeaponRig" instance=ExtResource("2_rpwmn")]
 transform = Transform3D(-0.999999, 0, -8.74228e-08, 0, 0.999999, 0, 8.74227e-08, 0, -1, 0.49, -0.425, -0.495)
-WEAPON_TYPE = SubResource("Resource_ul5sk")
-WEAPON = Array[ExtResource("3_a8dxt")]([SubResource("Resource_a3j83"), ExtResource("3_j70n8"), SubResource("Resource_a3j83"), ExtResource("3_j70n8"), SubResource("Resource_a3j83")])
+WEAPON = Array[ExtResource("3_a8dxt")]([SubResource("Resource_ntqs4"), ExtResource("3_j70n8"), SubResource("Resource_ntqs4"), ExtResource("3_j70n8"), SubResource("Resource_ntqs4")])
 
 [node name="GrappleStart" type="Marker3D" parent="Head/Camera/WeaponRig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 0)
@@ -470,3 +461,5 @@ target_position = Vector3(0, 0.5, 0)
 script = ExtResource("3_v3ckk")
 
 [node name="UI" parent="." instance=ExtResource("7_sfxqt")]
+
+[connection signal="update_health" from="." to="UI" method="_on_character_update_health"]

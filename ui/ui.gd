@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name UI
 
+@export var health_bar: TextureProgressBar
+
 @onready var objective_label = %Objective
 @onready var hours_label = %HoursTimer
 @onready var mins_label = %MinutesTimer
@@ -26,3 +28,8 @@ func _on_timer_timeout():
 	secs_label.text = str(secs_passed % 60) + "s" 
 	mins_label.text = str(mins_passed) + "m" if (mins_passed > 0) else ""
 	hours_label.text = str(hours_passed) + "h" if (hours_passed > 0) else ""
+
+
+func _on_character_update_health(change: int, max_health : int):
+	health_bar.value += change
+	health_bar.max_value = max_health

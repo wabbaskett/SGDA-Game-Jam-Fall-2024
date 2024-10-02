@@ -9,6 +9,8 @@ extends CharacterBody3D
 
 ## The settings for the character's movement and feel.
 @export_category("Character")
+## The health of the player
+@export var max_health : int = 100
 ## The speed that the character moves at without crouching or sprinting.
 @export var base_speed : float = 3.0
 ## The speed that the character moves at when sprinting.
@@ -97,8 +99,10 @@ extends CharacterBody3D
 ## Use with caution.
 @export var gravity_enabled : bool = true
 
+signal update_health(change, max_health)
 
 # Member variables
+var health : int = max_health
 var speed : float = base_speed
 var current_speed : float = 0.0
 # States: normal, crouching, sprinting
@@ -426,6 +430,10 @@ func orient_grapple_rope():
 	ROPE.look_at_from_position(GRAPPLESTART.global_position + Vector3(0,0,.5), hookpoint)
 	ROPE.scale = Vector3(1, 1, absf(GRAPPLESTART.position.distance_to(hookpoint)))
 
+func take_damage(damage : int):
+	health -= damage
+	update_health.emit(-damage, max_health)
+
 func update_camera_fov():
 	if state == "sprinting":
 		CAMERA.fov = lerp(CAMERA.fov, 85.0, 0.3)
@@ -462,6 +470,7 @@ func headbob_animation(moving):
 
 
 func _process(delta):
+	
 	$UserInterface/DebugPanel.add_property("FPS", Performance.get_monitor(Performance.TIME_FPS), 0)
 	var status : String = state
 	if !is_on_floor():
