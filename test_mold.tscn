@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dljdi1kr848fq"]
+
+[ext_resource type="PackedScene" uid="uid://dt3ncynvpi5o4" path="res://test_mold_pillar.tscn" id="1_nrx7n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ofssy"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jecrk"]
+albedo_color = Color(0.234654, 0.32235, 0.459708, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uluq6"]
+material = SubResource("StandardMaterial3D_jecrk")
+size = Vector3(20, 1, 20)
+
+[node name="Node" type="Node"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_ofssy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D"]
+mesh = SubResource("BoxMesh_uluq6")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(-0.866025, 0.5, 7.57103e-08, 0.5, 0.866025, -4.37114e-08, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-0.125557, 0.0830206, 0.988607, -0.00643471, 0.996403, -0.0844928, -0.992066, -0.0169701, -0.124571, 7.59436, 0, 0)
+
+[node name="Mother_Mold" parent="." instance=ExtResource("1_nrx7n")]
+
+[node name="GrowthTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="MobTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0878089, 0.75179, -0.65353, 0.0259169, 0.657567, 0.752951, 0.9958, 0.0491783, -0.0772242, 0, 3.68696, 0)
+shadow_enabled = true
+
+[connection signal="timeout" from="GrowthTimer" to="Mother_Mold" method="_on_growth_timer_timeout"]
+[connection signal="timeout" from="MobTimer" to="Mother_Mold" method="_on_mob_timer_timeout"]

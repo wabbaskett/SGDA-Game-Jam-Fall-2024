@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://8c5l207wvev3"]
+[gd_scene load_steps=10 format=3 uid="uid://8c5l207wvev3"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_4x8x7"]
 [ext_resource type="PackedScene" uid="uid://i7jovwrwaogl" path="res://map.tscn" id="2_ce245"]
 [ext_resource type="PackedScene" uid="uid://blmcha86tbi6b" path="res://desk_final.tscn" id="3_f7ejf"]
 [ext_resource type="PackedScene" uid="uid://dhkotd14k7v1n" path="res://shelf.tscn" id="4_pgp8t"]
 [ext_resource type="PackedScene" uid="uid://c54vrlkytlw66" path="res://ui/ui.tscn" id="5_bmqf0"]
+[ext_resource type="PackedScene" uid="uid://dt3ncynvpi5o4" path="res://test_mold_pillar.tscn" id="6_g2uex"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edcox"]
 ground_color = Color(0.160784, 0.815686, 0.905882, 1)
@@ -47,3 +48,6 @@ transform = Transform3D(0.335712, 0, -0.217481, 0, 0.4, 0, 0.217481, 0, 0.335712
 
 [node name="shelf" parent="Map" instance=ExtResource("4_pgp8t")]
 transform = Transform3D(-0.0223242, 0, 0.349288, 0, 0.35, 0, -0.349288, 0, -0.0223242, 4.36863, 0.1, -2.35426)
+
+[node name="Mother_Mold" parent="." instance=ExtResource("6_g2uex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1015, 1.57295, 0)
