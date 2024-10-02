@@ -1,11 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=23 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
 [ext_resource type="PackedScene" uid="uid://bwffp5l7qk167" path="res://weapon.tscn" id="2_rpwmn"]
 [ext_resource type="Resource" uid="uid://dqxumepfdyf5n" path="res://meshes/weapons/shooter/shooter.tres" id="3_j70n8"]
 [ext_resource type="Script" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
-[ext_resource type="PackedScene" uid="uid://bnmhmak5266lh" path="res://addons/fpc/rope.tscn" id="6_8w2y7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -354,7 +353,7 @@ MarginContainer/constants/margin_top = 10
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
-[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH", "GRAPPLE_CAST", "ROPE", "GRAPPLESTART")]
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH", "GRAPPLE_CAST")]
 script = ExtResource("1_0t4e8")
 grapple_acceleration = 15.0
 grapple_adjustment = 0.25
@@ -367,8 +366,6 @@ JUMP_ANIMATION = NodePath("Head/JumpAnimation")
 CROUCH_ANIMATION = NodePath("CrouchAnimation")
 COLLISION_MESH = NodePath("Collision")
 GRAPPLE_CAST = NodePath("Head/Camera/GrappleCast")
-ROPE = NodePath("Head/Camera/WeaponRig/GrappleStart/Rope")
-GRAPPLESTART = NodePath("Head/Camera/WeaponRig/GrappleStart")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -393,13 +390,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="Weapon" parent="Head/Camera/WeaponRig" instance=ExtResource("2_rpwmn")]
 transform = Transform3D(0.992549, 0.0135535, 0.121086, 0.000242775, 0.993571, -0.113203, -0.121842, 0.112389, 0.986166, 0.49, -0.425, -0.495)
 WEAPON_TYPE = ExtResource("3_j70n8")
-
-[node name="GrappleStart" type="Marker3D" parent="Head/Camera/WeaponRig"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 0)
-
-[node name="Rope" parent="Head/Camera/WeaponRig/GrappleStart" instance=ExtResource("6_8w2y7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 0)
-skeleton = NodePath("../../../../..")
 
 [node name="GrappleCast" type="RayCast3D" parent="Head/Camera"]
 target_position = Vector3(0, 0, -600)
