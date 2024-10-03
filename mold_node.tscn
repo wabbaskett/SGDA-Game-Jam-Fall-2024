@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2jl2n53bh8m2"]
+
+[ext_resource type="Script" path="res://mold_node.gd" id="1_pj6r2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pyua0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7l551"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u1jwp"]
+radius = 5.0
+
+[node name="MoldNode" type="Node3D"]
+script = ExtResource("1_pj6r2")
+
+[node name="MoldNodeMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_pyua0")
+
+[node name="MoldHitbox" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoldHitbox"]
+shape = SubResource("SphereShape3D_7l551")
+
+[node name="MoldArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoldArea"]
+shape = SubResource("SphereShape3D_u1jwp")

@@ -50,4 +50,4 @@ transform = Transform3D(0.335712, 0, -0.217481, 0, 0.4, 0, 0.217481, 0, 0.335712
 transform = Transform3D(-0.0223242, 0, 0.349288, 0, 0.35, 0, -0.349288, 0, -0.0223242, 4.36863, 0.1, -2.35426)
 
 [node name="Mother_Mold" parent="." instance=ExtResource("6_g2uex")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1015, 1.57295, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.798, 1.57295, 24.3299)

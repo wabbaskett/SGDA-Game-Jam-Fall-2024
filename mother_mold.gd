@@ -14,7 +14,7 @@ func _on_growth_timer_timeout() -> void:
 
 
 func spawn_mob():
-	var mob_scene = preload("res://test_mob.tscn")
+	var mob_scene = preload("res://test_mob.tscn") #WONT WORK WHEN WE EXPORT AS AN EXE
 	var mob_instance = mob_scene.instantiate()
 
 	var newMobPosition: Vector3
@@ -32,3 +32,6 @@ func spawn_mob():
 	
 	print("Mob Spawned")
 	get_tree().current_scene.add_child(mob_instance)
+	
+
+	
