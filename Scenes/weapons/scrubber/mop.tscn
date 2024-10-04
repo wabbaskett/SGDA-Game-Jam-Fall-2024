@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqq4tf30xlcp5"]
+
+[ext_resource type="PackedScene" uid="uid://dqmd7fnyjio68" path="res://Models/Weapons/Mop.blend" id="1_nbvp6"]
+
+[node name="Mop" instance=ExtResource("1_nbvp6")]
+
+[node name="Cube" parent="." index="0"]
+layers = 2

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://b4e550r2v7n5u"]
+
+[ext_resource type="Script" path="res://Scenes/weapons/Weapons.gd" id="2_34vxh"]
+[ext_resource type="PackedScene" uid="uid://dqq4tf30xlcp5" path="res://Scenes/weapons/scrubber/mop.tscn" id="2_msm5o"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_34vxh")
+name = &"scrubber"
+position = Vector3(1.21, 0.08, -8.33)
+rotation = Vector3(0, -263, 98)
+weaponScene = ExtResource("2_msm5o")

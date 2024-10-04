@@ -1,15 +1,18 @@
-@tool
+
 
 extends Node3D
 
-@export var WEAPON_TYPE : Weapons:
-	set(value):
-		WEAPON_TYPE = value
-		if Engine.is_editor_hint():
-			load_weapon()
+#@export var WEAPON_TYPE : Weapons:
+	#set(value):
+		#WEAPON_TYPE = value
+		#if Engine.is_editor_hint():
+			#load_weapon()
+@export var CAMERA : Camera3D
+
 @export var WEAPON: Array[Weapons]
 
 var focused : int = 0
+var current_instance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,7 +48,21 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func load_weapon():
-	var scene_instance = WEAPON[focused].weaponScene.instantiate()
-	add_child(scene_instance)
+	remove_child(current_instance)
+	current_instance = WEAPON[focused].weaponScene.instantiate()
+	add_child(current_instance)
+	print(str(get_child_count()))
 	position = WEAPON[focused].position
 	rotation_degrees = WEAPON[focused].rotation
+	
+func attack():
+	print("attacking")
+	var space_state = CAMERA.get_world_3d().direct_space_state
+	var screen_center = get_viewport().size / 2
+	print(str(screen_center))
+	var origin = CAMERA.project_ray_origin(screen_center)
+	var endpoint = origin + CAMERA.project_ray_normal(screen_center) * 100
+	var bullet = PhysicsRayQueryParameters3D.create(origin, endpoint)
+	bullet.collide_with_bodies = true #Change to collision mask
+	var result = space_state.intersect_ray(bullet)
+	print(str(result))

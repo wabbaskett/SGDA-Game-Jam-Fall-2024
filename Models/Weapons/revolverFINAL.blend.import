@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://chv3ua3m3rgyp"
-path="res://.godot/imported/revolverFINAL.blend-e82d6f1527a0306f0908dc913a45bca9.scn"
+path="res://.godot/imported/revolverFINAL.blend-a041cd6e1cf3f0f4aec4fe926ab48531.scn"
 
 [deps]
 
-source_file="res://Models/revolverFINAL.blend"
-dest_files=["res://.godot/imported/revolverFINAL.blend-e82d6f1527a0306f0908dc913a45bca9.scn"]
+source_file="res://Models/Weapons/revolverFINAL.blend"
+dest_files=["res://.godot/imported/revolverFINAL.blend-a041cd6e1cf3f0f4aec4fe926ab48531.scn"]
 
 [params]
 

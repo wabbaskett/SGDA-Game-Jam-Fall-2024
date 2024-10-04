@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwffp5l7qk167"]
 
-[ext_resource type="Script" path="res://init_weapon.gd" id="1_ychb4"]
+[ext_resource type="Script" path="res://addons/fpc/init_weapon.gd" id="1_ychb4"]
 
 [node name="Weapon" type="Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.49, -0.425, -0.495)

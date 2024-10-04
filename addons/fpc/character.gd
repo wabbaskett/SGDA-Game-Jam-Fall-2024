@@ -100,6 +100,7 @@ extends CharacterBody3D
 @export var gravity_enabled : bool = true
 
 signal update_health(change, max_health)
+signal weapon_attack()
 
 # Member variables
 var health : int = max_health
@@ -214,7 +215,7 @@ func _physics_process(delta):
 	if !immobile: # Immobility works by interrupting user input, so other forces can still be applied to the player
 		input_dir = Input.get_vector(LEFT, RIGHT, FORWARD, BACKWARD)
 	handle_movement(delta, input_dir)
-
+	handle_weapon_state()
 	handle_head_rotation()
 	
 	# The player is not able to stand up if the ceiling is too low
@@ -467,6 +468,11 @@ func headbob_animation(moving):
 		if HEADBOB_ANIMATION.current_animation == "sprint" or HEADBOB_ANIMATION.current_animation == "walk":
 			HEADBOB_ANIMATION.speed_scale = 1
 			HEADBOB_ANIMATION.play("RESET", 1)
+
+func handle_weapon_state():
+	if Input.is_action_just_pressed("attack"):
+		weapon_attack.emit()
+	
 
 
 func _process(delta):

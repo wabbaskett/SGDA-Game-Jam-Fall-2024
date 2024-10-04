@@ -1,14 +1,18 @@
-[gd_scene load_steps=28 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=31 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
 [ext_resource type="PackedScene" uid="uid://bwffp5l7qk167" path="res://weapon.tscn" id="2_rpwmn"]
-[ext_resource type="Script" path="res://meshes/weapons/Weapons.gd" id="3_a8dxt"]
-[ext_resource type="Resource" uid="uid://dqxumepfdyf5n" path="res://meshes/weapons/shooter/shooter.tres" id="3_j70n8"]
+[ext_resource type="Script" path="res://Scenes/weapons/Weapons.gd" id="3_a8dxt"]
+[ext_resource type="Resource" uid="uid://dqxumepfdyf5n" path="res://Scenes/weapons/shooter/shooter.tres" id="3_j70n8"]
+[ext_resource type="Script" path="res://addons/fpc/init_weapon.gd" id="3_k7r1b"]
 [ext_resource type="Script" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
-[ext_resource type="PackedScene" uid="uid://b46gl8o35ykpo" path="res://meshes/weapons/scrubber/scrubber.tscn" id="4_fjnw3"]
+[ext_resource type="Resource" uid="uid://b4e550r2v7n5u" path="res://Scenes/weapons/scrubber/scrubber.tres" id="5_1eult"]
 [ext_resource type="PackedScene" uid="uid://bnmhmak5266lh" path="res://addons/fpc/rope.tscn" id="6_8w2y7"]
+[ext_resource type="Resource" uid="uid://c0c5nttxwwk6e" path="res://Scenes/weapons/flamethrower/flamethrower.tres" id="6_a2n8c"]
 [ext_resource type="PackedScene" uid="uid://c54vrlkytlw66" path="res://ui/ui.tscn" id="7_sfxqt"]
+[ext_resource type="Script" path="res://addons/fpc/weapon_viewport.gd" id="12_f00hw"]
+[ext_resource type="Script" path="res://addons/fpc/weapon_camera.gd" id="13_vv4uu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -153,14 +157,6 @@ _data = {
 "RESET": SubResource("Animation_j8cx7"),
 "crouch": SubResource("Animation_5ec5e")
 }
-
-[sub_resource type="Resource" id="Resource_ntqs4"]
-resource_local_to_scene = true
-script = ExtResource("3_a8dxt")
-name = &"scrubber"
-position = Vector3(0.49, -0.425, -0.495)
-rotation = Vector3(0, 180, 0)
-weaponScene = ExtResource("4_fjnw3")
 
 [sub_resource type="Animation" id="Animation_gh776"]
 resource_name = "RESET"
@@ -398,12 +394,15 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
+cull_mask = 1048573
 
 [node name="WeaponRig" type="Node3D" parent="Head/Camera"]
 
-[node name="Weapon" parent="Head/Camera/WeaponRig" instance=ExtResource("2_rpwmn")]
-transform = Transform3D(-0.999999, 0, -8.74228e-08, 0, 0.999999, 0, 8.74227e-08, 0, -1, 0.49, -0.425, -0.495)
-WEAPON = Array[ExtResource("3_a8dxt")]([SubResource("Resource_ntqs4"), ExtResource("3_j70n8"), SubResource("Resource_ntqs4"), ExtResource("3_j70n8"), SubResource("Resource_ntqs4")])
+[node name="Weapon" type="Node3D" parent="Head/Camera/WeaponRig" node_paths=PackedStringArray("CAMERA") instance=ExtResource("2_rpwmn")]
+transform = Transform3D(0.585208, -0.18026, 0.790593, 0.699339, -0.381292, -0.604599, 0.410431, 0.906709, -0.0970728, 3.645, -0.53, -5.58)
+script = ExtResource("3_k7r1b")
+CAMERA = NodePath("../..")
+WEAPON = Array[ExtResource("3_a8dxt")]([ExtResource("5_1eult"), ExtResource("3_j70n8"), ExtResource("5_1eult"), ExtResource("6_a2n8c"), ExtResource("6_a2n8c")])
 
 [node name="GrappleStart" type="Marker3D" parent="Head/Camera/WeaponRig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 0)
@@ -462,4 +461,25 @@ script = ExtResource("3_v3ckk")
 
 [node name="UI" parent="." instance=ExtResource("7_sfxqt")]
 
+[node name="WeaponViewport" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="WeaponViewport"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("12_f00hw")
+
+[node name="Camera3D" type="Camera3D" parent="WeaponViewport/SubViewport" node_paths=PackedStringArray("MAIN_CAMERA")]
+cull_mask = 2
+script = ExtResource("13_vv4uu")
+MAIN_CAMERA = NodePath("../../../Head/Camera")
+
 [connection signal="update_health" from="." to="UI" method="_on_character_update_health"]
+[connection signal="weapon_attack" from="." to="Head/Camera/WeaponRig/Weapon" method="attack"]

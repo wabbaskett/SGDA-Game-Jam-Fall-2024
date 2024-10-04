@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://c0c5nttxwwk6e"]
+
+[ext_resource type="Script" path="res://Scenes/weapons/Weapons.gd" id="1_gx7qx"]
+[ext_resource type="PackedScene" uid="uid://d3m18fj7leqt" path="res://Scenes/weapons/flamethrower/flamethrower.tscn" id="2_wx2a2"]
+
+[resource]
+script = ExtResource("1_gx7qx")
+name = &"Flamethrower"
+position = Vector3(1.835, -1.9, -3.85)
+rotation = Vector3(-6, -175.5, -4)
+weaponScene = ExtResource("2_wx2a2")
