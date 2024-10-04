@@ -136,6 +136,7 @@ func _ready():
 	ROPE.transform = GRAPPLESTART.transform
 	print(in_air_momentum)
 	
+	
 	# If the controller is rotated in a certain direction for game design purposes, redirect this rotation into the head.
 	HEAD.rotation.y = rotation.y
 	rotation.y = 0

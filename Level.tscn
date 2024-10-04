@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://8c5l207wvev3"]
+[gd_scene load_steps=10 format=3 uid="uid://8c5l207wvev3"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_4x8x7"]
 [ext_resource type="PackedScene" uid="uid://bxcv0xuek8kaq" path="res://map.tscn" id="2_ce245"]
-[ext_resource type="PackedScene" path="res://desk_final.tscn" id="3_f7ejf"]
-[ext_resource type="PackedScene" path="res://shelf.tscn" id="4_pgp8t"]
+[ext_resource type="PackedScene" uid="uid://blmcha86tbi6b" path="res://desk_final.tscn" id="3_f7ejf"]
+[ext_resource type="PackedScene" uid="uid://dhkotd14k7v1n" path="res://shelf.tscn" id="4_pgp8t"]
+[ext_resource type="PackedScene" uid="uid://cvl5t1pq6mpce" path="res://Scenes/Enemies/test_enemy.tscn" id="5_4mhmj"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edcox"]
 ground_color = Color(0.160784, 0.815686, 0.905882, 1)
@@ -16,6 +17,25 @@ background_mode = 2
 sky = SubResource("Sky_2iust")
 tonemap_mode = 1
 ssao_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_xdkq6"]
+resource_name = "cam_test"
+script/source = "extends Camera3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_button_timeout() -> void:
+	current = true
+"
 
 [node name="Level" type="Node3D"]
 
@@ -43,3 +63,15 @@ transform = Transform3D(0.335712, 0, -0.217481, 0, 0.4, 0, 0.217481, 0, 0.335712
 
 [node name="shelf" parent="Map" instance=ExtResource("4_pgp8t")]
 transform = Transform3D(-0.0223242, 0, 0.349288, 0, 0.35, 0, -0.349288, 0, -0.0223242, 4.36863, 0.1, -2.35426)
+
+[node name="TestEnemy" parent="." instance=ExtResource("5_4mhmj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20339, 3, 14.6782)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.173081, 0, 0.984908, 0, 1, 0, -0.984908, 0, 0.173081, 2.05084, 4.74168, 16.2363)
+script = SubResource("GDScript_xdkq6")
+
+[node name="Button" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Button" to="Camera3D" method="_on_button_timeout"]

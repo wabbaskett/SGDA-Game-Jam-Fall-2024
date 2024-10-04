@@ -16,6 +16,7 @@ var current_instance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	load_weapon()
 
 func nextWeapon():
@@ -48,7 +49,8 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func load_weapon():
-	remove_child(current_instance)
+	if current_instance != null : 
+		remove_child(current_instance)
 	current_instance = WEAPON[focused].weaponScene.instantiate()
 	add_child(current_instance)
 	print(str(get_child_count()))
@@ -56,13 +58,7 @@ func load_weapon():
 	rotation_degrees = WEAPON[focused].rotation
 	
 func attack():
-	print("attacking")
-	var space_state = CAMERA.get_world_3d().direct_space_state
-	var screen_center = get_viewport().size / 2
-	print(str(screen_center))
-	var origin = CAMERA.project_ray_origin(screen_center)
-	var endpoint = origin + CAMERA.project_ray_normal(screen_center) * 100
-	var bullet = PhysicsRayQueryParameters3D.create(origin, endpoint)
-	bullet.collide_with_bodies = true #Change to collision mask
-	var result = space_state.intersect_ray(bullet)
-	print(str(result))
+	pass
+	
+
+	

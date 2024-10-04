@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsxk1e43r2x50"]
+[gd_scene load_steps=28 format=3 uid="uid://dsxk1e43r2x50"]
 
 [ext_resource type="PackedScene" uid="uid://chv3ua3m3rgyp" path="res://Models/Weapons/revolverFINAL.blend" id="1_hjrd0"]
 [ext_resource type="Texture2D" uid="uid://capeurbschau4" path="res://Models/textures/Frame.001.png" id="2_jkvr5"]
+[ext_resource type="Script" path="res://Scenes/weapons/shooter/revolver.gd" id="2_nvehg"]
 [ext_resource type="Texture2D" uid="uid://db7ult6b50x6w" path="res://Models/textures/Nozzle.png" id="3_32coq"]
+[ext_resource type="Resource" uid="uid://c7iuk71t7hqfr" path="res://Scenes/weapons/shooter/revolver_data.tres" id="3_ooiu2"]
 [ext_resource type="Texture2D" uid="uid://bm8ug2goliyxh" path="res://Models/textures/Hammer.png" id="4_gtyp0"]
 [ext_resource type="Texture2D" uid="uid://cbvypjt86e1q" path="res://Models/textures/Grip.png" id="5_i1syg"]
 [ext_resource type="Texture2D" uid="uid://cqpfni81l2atl" path="res://Models/textures/Cylinder.png" id="6_07nfb"]
@@ -61,6 +63,20 @@ tracks/2/path = NodePath("Cylinder")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0, 0, 1, 0, 0.4, 1, 0, 0, 0, 1)
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.11),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_smoke"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wjwn0"]
 _data = {
@@ -68,8 +84,74 @@ _data = {
 "shoot": SubResource("Animation_5d4ym")
 }
 
-[node name="revolverFINAL" instance=ExtResource("1_hjrd0")]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ka4ey"]
+direction = Vector3(0, 1, 0)
+spread = 3.714
+initial_velocity_min = 0.3
+initial_velocity_max = 0.3
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.85
+scale_max = 1.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vh2xl"]
+shading_mode = 0
+albedo_color = Color(0.929412, 1, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8mar4"]
+material = SubResource("StandardMaterial3D_vh2xl")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbyea"]
+shading_mode = 0
+albedo_color = Color(1, 0.537255, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_gt4kw"]
+material = SubResource("StandardMaterial3D_tbyea")
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu8xp"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_hcvq3"]
+material = SubResource("StandardMaterial3D_lu8xp")
+size = Vector2(0.08, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hoxyl"]
+transparency = 1
+blend_mode = 4
+depth_draw_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.278431)
+
+[sub_resource type="SphereMesh" id="SphereMesh_q1li3"]
+material = SubResource("StandardMaterial3D_hoxyl")
+radius = 0.01
+height = 0.02
+
+[node name="revolverFINAL" node_paths=PackedStringArray("muzzle_flash", "smoke", "smoke_timer", "attack_timer") instance=ExtResource("1_hjrd0")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("2_nvehg")
+WEAPON_DATA = ExtResource("3_ooiu2")
+muzzle_flash = NodePath("MuzzleFlash")
+smoke = NodePath("Smoke")
+smoke_timer = NodePath("Smoke/Timer")
+attack_timer = NodePath("AttackTimer")
 
 [node name="Frame" parent="." index="0"]
 layers = 2
@@ -100,3 +182,40 @@ libraries = {
 "": SubResource("AnimationLibrary_wjwn0")
 }
 script = ExtResource("7_m7cyj")
+
+[node name="MuzzleFlash" type="GPUParticles3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.460822, -1.34712)
+emitting = false
+amount = 3
+lifetime = 0.15
+one_shot = true
+explosiveness = 1.0
+randomness = 0.19
+visibility_aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ka4ey")
+draw_passes = 3
+draw_pass_1 = SubResource("PlaneMesh_8mar4")
+draw_pass_2 = SubResource("QuadMesh_gt4kw")
+draw_pass_3 = SubResource("QuadMesh_hcvq3")
+
+[node name="Smoke" type="GPUParticles3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.460822, -1.34712)
+visible = false
+amount = 50
+amount_ratio = 0.5504
+lifetime = 1.75
+visibility_aabb = AABB(-0.5, -0.5, -0.5, 1, 4, 1)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ka4ey")
+draw_pass_1 = SubResource("SphereMesh_q1li3")
+
+[node name="Timer" type="Timer" parent="Smoke" index="0"]
+wait_time = 2.0
+
+[node name="AttackTimer" type="Timer" parent="." index="9"]
+one_shot = true
+
+[connection signal="revolverAttack" from="." to="AnimationPlayer" method="_on_revolver_attack"]
+[connection signal="timeout" from="Smoke/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

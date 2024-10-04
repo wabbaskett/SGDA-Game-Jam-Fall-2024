@@ -1,9 +1,57 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3m18fj7leqt"]
+[gd_scene load_steps=10 format=3 uid="uid://d3m18fj7leqt"]
 
 [ext_resource type="PackedScene" uid="uid://ctgygmd6g72qi" path="res://Models/Weapons/Flamethrower.blend" id="1_u5t4a"]
+[ext_resource type="Script" path="res://Scenes/weapons/flamethrower/flamethrower.gd" id="2_4rgs5"]
+[ext_resource type="Resource" uid="uid://cvwtbgwuxedh0" path="res://Scenes/weapons/flamethrower/flamethrower_data.tres" id="3_ftl23"]
 
-[node name="Flamethrower" instance=ExtResource("1_u5t4a")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o8rcu"]
+height = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu7yt"]
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+albedo_color = Color(1, 0, 0, 0.505882)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_37l8m"]
+material = SubResource("StandardMaterial3D_eu7yt")
+height = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lmcay"]
+lifetime_randomness = 0.5
+direction = Vector3(0, 0, 1)
+spread = 10.0
+initial_velocity_min = 29.17
+initial_velocity_max = 125.0
+gravity = Vector3(0, 2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4sp5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 0.615686)
+billboard_mode = 3
+particles_anim_h_frames = 128
+particles_anim_v_frames = 128
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8tswh"]
+material = SubResource("StandardMaterial3D_f4sp5")
+flip_faces = true
+
+[node name="Flamethrower" node_paths=PackedStringArray("hitbox", "flame_timer", "flame_particles") instance=ExtResource("1_u5t4a")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_4rgs5")
+hitbox = NodePath("FlameHitbox")
+hitbox_offset = Vector3(0, 0, 5)
+hitbox_rotation = Vector3(90, 0, 0)
+hitbox_scale = Vector3(4, 4, 4)
+flame_timer = NodePath("Timer")
+WEAPON_DATA = ExtResource("3_ftl23")
+flame_particles = NodePath("GPUParticles3D")
 
 [node name="Shell" parent="." index="0"]
 layers = 2
@@ -24,3 +72,29 @@ layers = 2
 layers = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+
+[node name="FlameHitbox" type="Area3D" parent="." index="7"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FlameHitbox" index="0"]
+shape = SubResource("CapsuleShape3D_o8rcu")
+
+[node name="DebugHitbox" type="MeshInstance3D" parent="FlameHitbox" index="1"]
+mesh = SubResource("CapsuleMesh_37l8m")
+
+[node name="Timer" type="Timer" parent="." index="8"]
+wait_time = 0.1
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.485435, 5.18816)
+emitting = false
+amount = 100
+lifetime = 0.5
+randomness = 1.0
+visibility_aabb = AABB(-2, -2.4, -4, 4, 4.97, 14.6)
+process_material = SubResource("ParticleProcessMaterial_lmcay")
+draw_pass_1 = SubResource("QuadMesh_8tswh")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

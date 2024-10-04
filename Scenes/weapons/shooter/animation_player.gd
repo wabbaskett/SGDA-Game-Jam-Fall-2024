@@ -5,12 +5,14 @@ extends AnimationPlayer
 func _ready():
 	pass # Replace with function body.
 
-func _input(event):
-	if event.is_action_pressed("Shoot"):
-		print("shooting")
-		stop()
-		play("shoot")
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_revolver_attack() -> void:
+	print("shooting")
+	stop()
+	play("shoot")

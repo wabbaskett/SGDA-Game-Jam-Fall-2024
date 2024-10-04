@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://dqxumepfdyf5n"]
+[gd_resource type="Resource" script_class="Weapons" load_steps=4 format=3 uid="uid://dqxumepfdyf5n"]
 
 [ext_resource type="Script" path="res://Scenes/weapons/Weapons.gd" id="1_ijph4"]
+[ext_resource type="Resource" uid="uid://c7iuk71t7hqfr" path="res://Scenes/weapons/shooter/revolver_data.tres" id="2_3vwe7"]
 [ext_resource type="PackedScene" uid="uid://dsxk1e43r2x50" path="res://Scenes/weapons/shooter/revolver_final.tscn" id="2_gyar5"]
 
 [resource]
@@ -9,3 +10,4 @@ name = &"Shooter"
 position = Vector3(0.49, -0.425, -0.495)
 rotation = Vector3(6.5, 7, 0.014)
 weaponScene = ExtResource("2_gyar5")
+weaponData = ExtResource("2_3vwe7")

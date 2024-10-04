@@ -6,3 +6,5 @@ class_name Weapons extends Resource
 @export var rotation : Vector3
 @export_category("Weapon Visuals")
 @export var weaponScene : PackedScene
+@export_category("Weapon Mechanics")
+@export var weaponData : Weapon_Data
