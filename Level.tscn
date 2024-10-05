@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://8c5l207wvev3"]
+[gd_scene load_steps=29 format=3 uid="uid://8c5l207wvev3"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_4x8x7"]
 [ext_resource type="PackedScene" uid="uid://bxcv0xuek8kaq" path="res://map.tscn" id="2_ce245"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bufpa7uevwsi8" path="res://Models/Papers.blend" id="21_hecd4"]
 [ext_resource type="PackedScene" uid="uid://dxi0k4gx5atdq" path="res://paper_stack.tscn" id="22_g0aic"]
 [ext_resource type="PackedScene" uid="uid://bhetnr062qte0" path="res://plank.tscn" id="23_a2ol8"]
+[ext_resource type="PackedScene" uid="uid://cbq7iwdmtqsmx" path="res://Collectible.tscn" id="24_nse8y"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edcox"]
 ground_color = Color(0.160784, 0.815686, 0.905882, 1)
@@ -58,7 +59,7 @@ func _on_button_timeout() -> void:
 [node name="Level" type="Node3D"]
 
 [node name="Character" parent="." instance=ExtResource("1_4x8x7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.30982, 3.56549, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01021, 48.368, -59.6499)
 base_speed = 6.0
 sprint_speed = 12.0
 crouch_speed = 2.0
@@ -271,5 +272,13 @@ transform = Transform3D(-1.3, 0, -1.1365e-07, 0, 1.3, 0, 1.1365e-07, 0, -1.3, 89
 
 [node name="PaperStack4" parent="." instance=ExtResource("22_g0aic")]
 transform = Transform3D(1.89956, 0, -0.0410505, 0, 4.82107, 0, 0.0410505, 0, 1.89956, 86.8438, 12.0654, -49.8243)
+
+[node name="Collectibles" type="Node3D" parent="."]
+
+[node name="Collectible" parent="Collectibles" instance=ExtResource("24_nse8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 50, -57)
+
+[node name="Collectible2" parent="Collectibles" instance=ExtResource("24_nse8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.683, 21, -41.877)
 
 [connection signal="timeout" from="Button" to="Camera3D" method="_on_button_timeout"]
