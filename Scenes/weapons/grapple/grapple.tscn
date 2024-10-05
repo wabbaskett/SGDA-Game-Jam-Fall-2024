@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://df40hk3eyjdda"]
+[gd_scene load_steps=12 format=4 uid="uid://df40hk3eyjdda"]
 
 [ext_resource type="PackedScene" uid="uid://i4rhfpaumlp1" path="res://Models/Weapons/HookGun.blend" id="1_2qexp"]
 [ext_resource type="Script" path="res://Scenes/weapons/grapple/animation_player.gd" id="2_evqer"]
@@ -71,14 +71,52 @@ _data = {
 "shoot": SubResource("Animation_00rmo")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmbsl"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.136356, 0.136356, 0.136356, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m0rpq"]
+_surfaces = [{
+"aabb": AABB(-0.951057, -1, -9.93289, 1.90211, 1.80902, 9.93289),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAFAAMAAgAEAAUABAAHAAUABAAGAAcABQABAAMAAQAHAAkAAQAFAAcABgAJAAcABgAIAAkACAABAAkACAAAAAEACAACAAAAAgAGAAQAAgAIAAYA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("/38AAP//AAD/fwAAAAAAAP//yGH//wAA///IYQAAAAAaz/7///8AABrP//8AAAAA5DD+////AADkMP//AAAAAAAAyGH//wAAAADIYQAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_niagp"]
+resource_name = "RopeMesh(1)_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.951057, -1, -9.93289, 1.90211, 1.80902, 9.93289),
+"attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv//AAAAAAAAbfoCrczM/3/MzP9/bnoCrczMAADMzAAAHOSz8ZmZ/3+Zmf9/HGSz8ZmZAACZmQAA4puz8WZm/39mZv9/4huz8WZmAABmZgAAkIUCrTMz/38zM/9/kQUCrTMzAAAzMwAA"),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AQAKAAQAAQAHAAoACAARAAsACAAOABEADQAWABAADQATABYADwADAAkAAwAVABsAAwAPABUAFAAdABcAFAAaAB0AGQAFABwAGQACAAUAGAAGAAAABgASAAwABgAYABIA"),
+"material": SubResource("StandardMaterial3D_xmbsl"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("/38AAP///n//fwAA//8L7v9/AAD//wvu/38AAAAA////fwAAAAAL7v9/AAAAAAvu///IYf///n///8hh//8L7v//yGH//17O///IYQAA/////8hhAAAL7v//yGEAAF7OGs/+/////n8az/7/////vxrP/v///17OGs///wAA//8az///AAD/vxrP//8AAF7O5DD+/////n/kMP7/////v+Qw/v///17O5DD//wAA///kMP//AAD/v+Qw//8AAF7OAADIYf///n8AAMhh//8L7gAAyGH//17OAADIYQAA//8AAMhhAAAL7gAAyGEAAF7O/3///+OR8UjxyBvu////f+OR8UjxyBvu/3///+OR8UgstBZa////f+OR8UgstBZa/3///////38stBZa////f////38stBZa/3///////38V2tHL////f////38V2tHL/3////HIG+4V2tHL/v//f/HIG+4V2tHL")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_m0rpq")
+
 [node name="HookGun2" instance=ExtResource("1_2qexp")]
 transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 0, 0, 0)
 
-[node name="HookGun" parent="." index="0"]
+[node name="Hook" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52321, 5.22639, 0)
 layers = 2
 
-[node name="Hook" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52321, 5.22639, 0)
+[node name="HookGun" parent="." index="1"]
 layers = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" node_paths=PackedStringArray("grapple_sfx")]
@@ -88,9 +126,11 @@ libraries = {
 script = ExtResource("2_evqer")
 grapple_sfx = NodePath("../AudioStreamPlayer")
 
-[node name="Rope" parent="." index="3" instance=ExtResource("2_u6i5q")]
+[node name="Rope" type="MeshInstance3D" parent="." index="3" instance=ExtResource("2_u6i5q")]
 transform = Transform3D(-1.74846e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.74846e-08, 3.61972, 4.94794, -4.76837e-07)
 visible = false
+mesh = SubResource("ArrayMesh_niagp")
+skeleton = NodePath("")
 script = ExtResource("3_dk2sn")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://i4rhfpaumlp1"
-path="res://.godot/imported/HookGun.blend-a8da85314cf8fe7fc508bfd2390327c6.scn"
+uid="uid://w8gcasdjrecr"
+path="res://.godot/imported/HookGun.blend-fd923ee605d468613552c5b8f762f7e8.scn"
 
 [deps]
 
-source_file="res://Models/Weapons/HookGun.blend"
-dest_files=["res://.godot/imported/HookGun.blend-a8da85314cf8fe7fc508bfd2390327c6.scn"]
+source_file="res://Models/HookGun.blend"
+dest_files=["res://.godot/imported/HookGun.blend-fd923ee605d468613552c5b8f762f7e8.scn"]
 
 [params]
 
@@ -31,13 +31,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:Spool": {
-"mesh_instance/layers": 2
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
