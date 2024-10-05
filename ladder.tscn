@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4c6h7i1f0t11"]
+
+[ext_resource type="PackedScene" uid="uid://db70grtstk04m" path="res://Models/Ladder.blend" id="1_5pkhr"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_baexq"]
+points = PackedVector3Array(-1.11111, -1.11111, -1.11111, 13.1097, 1.11111, 1.11111, 13.1097, 1.11111, -1.11111, -1.11111, 1.11111, 1.11111, 13.1097, -1.11111, 1.11111, 13.1097, -1.11111, -1.11111, -1.11111, 1.11111, -1.11111, -1.11111, -1.11111, 1.11111)
+
+[node name="Ladder" instance=ExtResource("1_5pkhr")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_baexq")

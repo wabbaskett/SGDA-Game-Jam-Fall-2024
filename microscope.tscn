@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxafg36l43ysu"]
+
+[ext_resource type="PackedScene" uid="uid://cpy8f1ofut38j" path="res://Models/Microscope.blend" id="1_hympp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wmmds"]
+points = PackedVector3Array(1, 0, 1.27325, -1, 0, 1.27325, 1, 0, -1.28034, 0.304229, 4.73843, -0.60582, 0.125098, 5.60665, 0.163196, 0.125098, 5.49963, 0.396953, 0.330266, 3.72862, 0.6813, -1, 0, -1.28034, -0.330462, 3.72862, 0.6813, -0.125294, 5.49963, 0.396953, -0.125294, 5.60665, 0.163196, -0.304424, 4.73843, -0.60582, 0.618833, 1.97517, -1.69698, 0.416014, 3.40537, -1.19312, -0.144675, 2.90046, -1.58213, -0.560885, 2.90046, -1.58213, -0.619029, 1.97517, -1.69698)
+
+[node name="Microscope" instance=ExtResource("1_hympp")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_wmmds")

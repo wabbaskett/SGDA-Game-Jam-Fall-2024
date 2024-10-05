@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsxk1e43r2x50"]
+[gd_scene load_steps=13 format=3 uid="uid://dsxk1e43r2x50"]
 
 [ext_resource type="PackedScene" uid="uid://chv3ua3m3rgyp" path="res://Models/revolverFINAL.blend" id="1_hjrd0"]
 [ext_resource type="Texture2D" uid="uid://capeurbschau4" path="res://Models/textures/Frame.001.png" id="2_jkvr5"]
@@ -25,48 +25,6 @@ albedo_texture = ExtResource("5_i1syg")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ah60w"]
 albedo_texture = ExtResource("6_07nfb")
 
-[sub_resource type="Animation" id="Animation_5d4ym"]
-resource_name = "shoot"
-length = 0.4
-step = 0.01
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.1, 1, 0, 0, 0.2, 0.4, 1, 0, 0, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.04, 1, 0.574, -0.001, 0.001, 0.819, 0.19, 1, 0.423, 0, 0, 0.906, 0.4, 1, 0, 0, 0, 1)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cylinder")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0, 0, 1, 0, 0.4, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_blj6y"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cylinder")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wjwn0"]
-_data = {
-"RESET": SubResource("Animation_blj6y"),
-"shoot": SubResource("Animation_5d4ym")
-}
-
 [node name="revolverFINAL" instance=ExtResource("1_hjrd0")]
 
 [node name="Frame" parent="." index="0"]
@@ -86,8 +44,3 @@ material_override = SubResource("StandardMaterial3D_d4otv")
 
 [node name="Cylinder" parent="." index="5"]
 material_override = SubResource("StandardMaterial3D_ah60w")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
-libraries = {
-"": SubResource("AnimationLibrary_wjwn0")
-}

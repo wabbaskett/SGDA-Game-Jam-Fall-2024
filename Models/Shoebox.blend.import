@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmbyyxuclotw8"
-path="res://.godot/imported/DeskFINAL.blend-4ac859fda59d8611c6139549853dcc3f.scn"
+uid="uid://cytki148ujc8u"
+path="res://.godot/imported/Shoebox.blend-e2a215f14a9e1c23b75005074560757c.scn"
 
 [deps]
 
-source_file="res://Models/DeskFINAL.blend"
-dest_files=["res://.godot/imported/DeskFINAL.blend-4ac859fda59d8611c6139549853dcc3f.scn"]
+source_file="res://Models/Shoebox.blend"
+dest_files=["res://.godot/imported/Shoebox.blend-e2a215f14a9e1c23b75005074560757c.scn"]
 
 [params]
 
