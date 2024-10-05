@@ -159,7 +159,7 @@ _data = {
 "crouch": SubResource("Animation_5ec5e")
 }
 
-[sub_resource type="Resource" id="Resource_d535o"]
+[sub_resource type="Resource" id="Resource_vy7vl"]
 resource_local_to_scene = true
 script = ExtResource("3_a8dxt")
 name = &"scrubber"
@@ -412,7 +412,7 @@ unique_name_in_owner = true
 [node name="Weapon" parent="Head/Camera/WeaponRig" node_paths=PackedStringArray("CAMERA") instance=ExtResource("2_rpwmn")]
 transform = Transform3D(0.991696, -0.117536, 0.0521674, 0.121477, 0.989348, -0.0801989, -0.0421854, 0.0858701, 0.995413, 1.6, -1.4, -2.21)
 CAMERA = NodePath("../..")
-WEAPON = Array[ExtResource("3_a8dxt")]([SubResource("Resource_d535o"), ExtResource("3_j70n8"), ExtResource("6_kxeo8"), ExtResource("6_a2n8c"), ExtResource("6_a2n8c")])
+WEAPON = Array[ExtResource("3_a8dxt")]([SubResource("Resource_vy7vl"), ExtResource("3_j70n8"), ExtResource("6_kxeo8"), ExtResource("6_a2n8c"), ExtResource("6_a2n8c")])
 
 [node name="GrappleStart" type="Marker3D" parent="Head/Camera/WeaponRig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68, -0.11, -0.89)

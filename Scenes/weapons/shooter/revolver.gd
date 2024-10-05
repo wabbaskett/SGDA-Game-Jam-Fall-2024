@@ -29,7 +29,7 @@ func has_ammo() -> bool :
 	if ammo <= 0 :
 		print("Out of ammo")
 		return false
-	print(ammo)
+	#print(ammo)
 	return true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
