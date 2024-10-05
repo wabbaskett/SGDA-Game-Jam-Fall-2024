@@ -229,7 +229,7 @@ func _physics_process(delta):
 	handle_state(input_dir)
 	
 	#handle_grappling()
-	if hookpoint_get:
+	if hookpoint_get and grappling:
 		
 		direction_to_hook = transform.origin.direction_to(hookpoint)
 		distance_to_hook = transform.origin.distance_to(hookpoint)
@@ -520,4 +520,5 @@ func _on_weapon_grapple_equipped():
 
 
 func _on_weapon_grapple_dequipped():
+	grappling = false
 	grapple_equipped = false
