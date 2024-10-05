@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bxcv0xuek8kaq" path="res://map.tscn" id="2_ce245"]
 [ext_resource type="PackedScene" uid="uid://b7hqj7pcs4byd" path="res://shelf.tscn" id="4_pgp8t"]
 [ext_resource type="PackedScene" uid="uid://dgm42oaba5uw8" path="res://armoire.tscn" id="4_s6nfj"]
-[ext_resource type="PackedScene" uid="uid://cvl5t1pq6mpce" path="res://Scenes/Enemies/test_enemy.tscn" id="5_4mhmj"]
+[ext_resource type="PackedScene" uid="uid://cvl5t1pq6mpce" path="res://Scenes/Enemies/Basic Mold/test_enemy.tscn" id="5_4mhmj"]
 [ext_resource type="PackedScene" uid="uid://bjyvn2e686jj8" path="res://desk.tscn" id="5_e5qjg"]
 [ext_resource type="PackedScene" uid="uid://fd8mtos0o371" path="res://seat.tscn" id="6_gbhew"]
 [ext_resource type="PackedScene" uid="uid://nrqvydl40fhm" path="res://table.tscn" id="8_jmpnu"]
@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bufpa7uevwsi8" path="res://Models/Papers.blend" id="21_hecd4"]
 [ext_resource type="PackedScene" uid="uid://dxi0k4gx5atdq" path="res://paper_stack.tscn" id="22_g0aic"]
 [ext_resource type="PackedScene" uid="uid://bhetnr062qte0" path="res://plank.tscn" id="23_a2ol8"]
-[ext_resource type="PackedScene" uid="uid://dt3ncynvpi5o4" path="res://Scenes/Enemies/test_mold_pillar.tscn" id="24_elcrs"]
+[ext_resource type="PackedScene" uid="uid://dt3ncynvpi5o4" path="res://Scenes/Enemies/Mold Pillar/mold_pillar.tscn" id="24_elcrs"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edcox"]
 ground_color = Color(0.160784, 0.815686, 0.905882, 1)

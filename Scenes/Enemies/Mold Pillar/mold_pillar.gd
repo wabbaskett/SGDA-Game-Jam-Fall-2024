@@ -1,15 +1,22 @@
-extends Node3D
+extends CharacterBody3D
 
 @onready var moldRadius = $MoldArea/MoldCollision.shape.radius
 
+@export var ENEMY_DATA : EnemyType
 @export var MOLD_MOB : PackedScene
 @export var MOLD_NODE : PackedScene
+@export var MOLD_GENERATOR : PackedScene
 @export var min_first_level_nodes : int = 3
+@export var healthbar : TextureProgressBar
 
 var connected_nodes : Array[Node]
 var connected_nodes_index : Array[int]
+var health : float
 
 signal delegate_spawning(index, to_spawn, local_position)
+
+func _ready() -> void:
+	health = ENEMY_DATA.health
 
 func _on_mob_timer_timeout() -> void:
 	spawn_node()
@@ -110,5 +117,8 @@ func spawn_node():
 				#max_node = e
 				#max_distance = squared_distance
 		
-	
+func _process(delta: float) -> void:
+	health_bar.value = health
+	if health <= 0: 
+		queue_free()
 	

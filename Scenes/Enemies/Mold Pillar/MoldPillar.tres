@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=2 format=3 uid="uid://bgd7363auj4am"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/EnemyType.gd" id="1_eo85b"]
+
+[resource]
+script = ExtResource("1_eo85b")
+health = 300.0
+move_speed = 0.0
+damage = 30.0

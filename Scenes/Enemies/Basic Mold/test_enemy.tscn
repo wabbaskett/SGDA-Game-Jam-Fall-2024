@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cvl5t1pq6mpce"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/enemy.gd" id="1_rasxp"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Basic Mold/enemy.gd" id="1_dqcji"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b7gqr"]
 
@@ -16,7 +16,7 @@ viewport_path = NodePath("SubViewport")
 [node name="TestEnemy" type="CharacterBody3D" node_paths=PackedStringArray("health_bar")]
 collision_layer = 2
 collision_mask = 7
-script = ExtResource("1_rasxp")
+script = ExtResource("1_dqcji")
 health_bar = NodePath("SubViewport/EnemyHealthBar")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

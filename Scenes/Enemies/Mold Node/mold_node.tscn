@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2jl2n53bh8m2"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/mold_node.gd" id="1_pj6r2"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Mold Node/mold_node.gd" id="1_pj6r2"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_pyua0"]
 

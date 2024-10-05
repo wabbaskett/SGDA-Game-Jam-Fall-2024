@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dljdi1kr848fq"]
 
-[ext_resource type="PackedScene" uid="uid://dt3ncynvpi5o4" path="res://test_mold_pillar.tscn" id="1_nrx7n"]
+[ext_resource type="PackedScene" uid="uid://dt3ncynvpi5o4" path="res://Scenes/Enemies/Mold Pillar/mold_pillar.tscn" id="1_nrx7n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ofssy"]
 size = Vector3(20, 1, 20)
