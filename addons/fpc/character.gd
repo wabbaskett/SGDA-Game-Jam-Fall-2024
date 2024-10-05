@@ -208,7 +208,7 @@ func _physics_process(delta):
 	var readable_velocity : String = "X: " + str(vd[0]) + " Y: " + str(vd[1]) + " Z: " + str(vd[2])
 	$UserInterface/DebugPanel.add_property("Velocity", readable_velocity, 3)
 	
-	print(is_on_floor())
+	#print(is_on_floor())
 	
 	# Gravity
 	#gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # If the gravity changes during your game, uncomment this code
@@ -243,7 +243,7 @@ func _physics_process(delta):
 			smallest_distance_to_hook = distance_to_hook
 			velocity_adjustment = 0.0
 		else:
-			print("bigger")
+			#print("bigger")
 			velocity_adjustment += grapple_adjustment
 			#velocity += (direction_to_hook * (grapple_acceleration + velocity_adjustment)* delta)
 			#transform.origin = lerp(transform.origin, hookpoint, 0.05)
@@ -290,10 +290,10 @@ func handle_movement(delta, input_dir):
 	direction = Vector3(direction.x, 0, direction.y)
 	if in_air_momentum:
 		if is_on_floor():
-			print("delta: " +str(delta))
-			print(motion_acceleration)
-			print(motion_acceleration)
-			print("delta accel: " +str(delta*motion_acceleration))
+			#print("delta: " +str(delta))
+			#print(motion_acceleration)
+			#print(motion_acceleration)
+			#print("delta accel: " +str(delta*motion_acceleration))
 			velocity.x = lerp(velocity.x, direction.x * speed, motion_acceleration * delta)
 			velocity.z = lerp(velocity.z, direction.z * speed, motion_acceleration * delta)
 			

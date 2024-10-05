@@ -73,8 +73,12 @@ _data = {
 [node name="HookGun2" instance=ExtResource("1_2qexp")]
 transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 0, 0, 0)
 
+[node name="HookGun" parent="." index="0"]
+layers = 2
+
 [node name="Hook" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52321, 5.22639, 0)
+layers = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
