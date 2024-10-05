@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=33 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
 [ext_resource type="PackedScene" uid="uid://bwffp5l7qk167" path="res://weapon.tscn" id="2_rpwmn"]
@@ -7,8 +7,10 @@
 [ext_resource type="Script" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
 [ext_resource type="PackedScene" uid="uid://dqq4tf30xlcp5" path="res://Scenes/weapons/scrubber/mop.tscn" id="4_qys4g"]
+[ext_resource type="Resource" uid="uid://610gfbkj27u7" path="res://Scenes/weapons/scrubber/mop_data.tres" id="4_wu422"]
 [ext_resource type="PackedScene" uid="uid://bnmhmak5266lh" path="res://addons/fpc/rope.tscn" id="6_8w2y7"]
 [ext_resource type="Resource" uid="uid://c0c5nttxwwk6e" path="res://Scenes/weapons/flamethrower/flamethrower.tres" id="6_a2n8c"]
+[ext_resource type="Resource" uid="uid://dhqsnh6wkqxe7" path="res://Scenes/weapons/grapple/grapple.tres" id="6_kxeo8"]
 [ext_resource type="PackedScene" uid="uid://c54vrlkytlw66" path="res://ui/ui.tscn" id="7_sfxqt"]
 [ext_resource type="Script" path="res://addons/fpc/weapon_viewport.gd" id="12_f00hw"]
 [ext_resource type="Script" path="res://addons/fpc/weapon_camera.gd" id="13_vv4uu"]
@@ -157,13 +159,14 @@ _data = {
 "crouch": SubResource("Animation_5ec5e")
 }
 
-[sub_resource type="Resource" id="Resource_g1v3f"]
+[sub_resource type="Resource" id="Resource_d6bwn"]
 resource_local_to_scene = true
 script = ExtResource("3_a8dxt")
 name = &"scrubber"
 position = Vector3(1.21, 0.08, -8.33)
 rotation = Vector3(0, -263, 98)
 weaponScene = ExtResource("4_qys4g")
+weaponData = ExtResource("4_wu422")
 
 [sub_resource type="Animation" id="Animation_gh776"]
 resource_name = "RESET"
@@ -407,16 +410,15 @@ cull_mask = 1048573
 unique_name_in_owner = true
 
 [node name="Weapon" parent="Head/Camera/WeaponRig" node_paths=PackedStringArray("CAMERA") instance=ExtResource("2_rpwmn")]
-transform = Transform3D(0.585208, -0.18026, 0.790593, 0.699339, -0.381292, -0.604599, 0.410431, 0.906709, -0.0970728, 3.645, -0.53, -5.58)
+transform = Transform3D(0.991696, -0.117536, 0.0521674, 0.121477, 0.989348, -0.0801989, -0.0421854, 0.0858701, 0.995413, 1.6, -1.4, -2.21)
 CAMERA = NodePath("../..")
-WEAPON = Array[ExtResource("3_a8dxt")]([SubResource("Resource_g1v3f"), ExtResource("3_j70n8"), SubResource("Resource_g1v3f"), ExtResource("6_a2n8c"), ExtResource("6_a2n8c")])
+WEAPON = Array[ExtResource("3_a8dxt")]([SubResource("Resource_d6bwn"), ExtResource("3_j70n8"), ExtResource("6_kxeo8"), ExtResource("6_a2n8c"), ExtResource("6_a2n8c")])
 
 [node name="GrappleStart" type="Marker3D" parent="Head/Camera/WeaponRig"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68, -0.11, -0.89)
 
 [node name="Rope" parent="Head/Camera/WeaponRig/GrappleStart" instance=ExtResource("6_8w2y7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.789, 0)
-skeleton = NodePath("../../../../..")
+visible = false
 
 [node name="GrappleCast" type="RayCast3D" parent="Head/Camera"]
 target_position = Vector3(0, 0, -600)
@@ -490,3 +492,7 @@ MAIN_CAMERA = NodePath("../../../Head/Camera")
 
 [connection signal="update_health" from="." to="UI" method="_on_character_update_health"]
 [connection signal="weapon_attack" from="." to="Head/Camera/WeaponRig/Weapon" method="attack"]
+[connection signal="grapple_dequipped" from="Head/Camera/WeaponRig/Weapon" to="." method="_on_weapon_grapple_dequipped"]
+[connection signal="grapple_equipped" from="Head/Camera/WeaponRig/Weapon" to="." method="_on_weapon_grapple_equipped"]
+[connection signal="on_cooldown" from="Head/Camera/WeaponRig/Weapon" to="UI" method="_on_weapon_on_cooldown"]
+[connection signal="end_cooldown" from="UI" to="Head/Camera/WeaponRig/Weapon" method="_on_end_cooldown"]

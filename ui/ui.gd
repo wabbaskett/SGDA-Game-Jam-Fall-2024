@@ -8,6 +8,9 @@ class_name UI
 @onready var mins_label = %MinutesTimer
 @onready var secs_label = %SecondsTimer
 
+signal startcooldown(index, duration, disable_weapon)
+signal end_cooldown(index)
+
 var secs_passed: int
 var mins_passed: int
 var hours_passed: int
@@ -33,3 +36,11 @@ func _on_timer_timeout():
 func _on_character_update_health(change: int, max_health : int):
 	health_bar.value += change
 	health_bar.max_value = max_health
+
+
+func _on_weapon_on_cooldown(index, duration, disable_weapon):
+	startcooldown.emit(index, duration, disable_weapon)
+
+
+func _on_weapons_end_cooldown(index):
+	end_cooldown.emit(index) # Replace with function body.

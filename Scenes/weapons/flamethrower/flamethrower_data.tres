@@ -4,4 +4,9 @@
 
 [resource]
 script = ExtResource("1_a2sq2")
-damage = 5
+damage = 8
+attackTime = 0.0
+cooldownTime = 45.0
+isHitscan = false
+range = 0.0
+ammo = 50

@@ -6,6 +6,7 @@
 script = ExtResource("1_3sw5c")
 damage = 10
 attackTime = 0.4
-cooldownTime = 0.0
+cooldownTime = 5.0
 isHitscan = true
 range = 100.0
+ammo = 6

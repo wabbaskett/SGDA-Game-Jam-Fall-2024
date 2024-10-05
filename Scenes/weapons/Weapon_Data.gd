@@ -6,3 +6,4 @@ class_name Weapon_Data extends Resource
 @export var cooldownTime : float
 @export var isHitscan : bool
 @export var range : float
+@export var ammo : int

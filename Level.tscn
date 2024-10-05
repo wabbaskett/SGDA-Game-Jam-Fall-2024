@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_4x8x7"]
 [ext_resource type="PackedScene" uid="uid://bxcv0xuek8kaq" path="res://map.tscn" id="2_ce245"]
-[ext_resource type="PackedScene" uid="uid://blmcha86tbi6b" path="res://desk_final.tscn" id="3_f7ejf"]
-[ext_resource type="PackedScene" uid="uid://dhkotd14k7v1n" path="res://shelf.tscn" id="4_pgp8t"]
+[ext_resource type="PackedScene" uid="uid://c7t4v31do5l4d" path="res://desk_final.tscn" id="3_f7ejf"]
+[ext_resource type="PackedScene" path="res://shelf.tscn" id="4_pgp8t"]
 [ext_resource type="PackedScene" uid="uid://cvl5t1pq6mpce" path="res://Scenes/Enemies/test_enemy.tscn" id="5_4mhmj"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edcox"]

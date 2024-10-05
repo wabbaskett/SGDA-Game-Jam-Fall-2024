@@ -6,6 +6,7 @@
 script = ExtResource("1_jfbi1")
 damage = 200
 attackTime = 1.0
-cooldownTime = 0.0
+cooldownTime = 2.0
 isHitscan = true
 range = 2.5
+ammo = 1

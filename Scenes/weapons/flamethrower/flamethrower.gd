@@ -11,17 +11,27 @@ var WEAPON_RIG : Node3D
 @export var WEAPON_DATA : Weapon_Data
 @export var flame_particles : GPUParticles3D
 
+var max_ammo : int
+var ammo
+
+signal on_cooldown(duration, disable_weapon_for_duration)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	WEAPON_RIG = get_parent().get_parent()
 	WEAPON_CAM = WEAPON_RIG.get_parent()
 	#print(WEAPON_CAM)
+	max_ammo = WEAPON_DATA.ammo
+	ammo = max_ammo
 	call_deferred("orient_hitbox") #Have to wait a frame for the Weapon rig to get to the right spot
 	print(WEAPON_DATA)
 	#print(hitbox.global_position)
 	#orient_hitbox()
 
-
+func has_ammo() -> bool : 
+	if ammo < 0 :
+		return false
+	return true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -44,7 +54,11 @@ func orient_hitbox() :
 
 
 func _on_timer_timeout() -> void:
-	var enemies = hitbox.get_overlapping_bodies()
-	
-	for e in enemies :
-		e.health -= WEAPON_DATA.damage
+	if has_ammo() : 
+		ammo -= 1
+		print(ammo)
+		var enemies = hitbox.get_overlapping_bodies()
+		for e in enemies :
+			e.health -= WEAPON_DATA.damage
+	else :
+		on_cooldown.emit(WEAPON_DATA.cooldownTime, true)

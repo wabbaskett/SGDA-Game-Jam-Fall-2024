@@ -1,15 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://c54vrlkytlw66"]
+[gd_scene load_steps=11 format=3 uid="uid://c54vrlkytlw66"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_fhuq0"]
 [ext_resource type="Theme" uid="uid://cr8plgujluwta" path="res://ui/ui_theme.tres" id="2_f4cni"]
 [ext_resource type="Script" path="res://ui/weapon_ui.gd" id="3_attpi"]
 [ext_resource type="Texture2D" uid="uid://lkh4hm3pad2p" path="res://ui/Mop.png" id="3_htwxt"]
+[ext_resource type="Script" path="res://ui/cooldown_bar.gd" id="4_4kw3n"]
 [ext_resource type="Texture2D" uid="uid://bci6vl5bqktdg" path="res://ui/Bleach.png" id="4_b6ujd"]
 [ext_resource type="Texture2D" uid="uid://djqxcmmmrk1n8" path="res://ui/Grapple.png" id="5_at66j"]
 [ext_resource type="Texture2D" uid="uid://cllvlbrxqduw7" path="res://ui/Free.png" id="6_gn0i2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_evoc8"]
 size = Vector2(500, 25)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0l08g"]
 
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("health_bar")]
 script = ExtResource("1_fhuq0")
@@ -70,6 +73,16 @@ size_flags_vertical = 4
 [node name="Sprite2D" type="Sprite2D" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot1/CenterContainer"]
 texture = ExtResource("3_htwxt")
 
+[node name="CooldownBar" type="TextureProgressBar" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot1"]
+layout_mode = 2
+max_value = 360.0
+step = 0.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_0l08g")
+tint_progress = Color(0, 0, 0, 0.631373)
+script = ExtResource("4_4kw3n")
+
 [node name="WeaponSlot2" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons"]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
@@ -83,6 +96,17 @@ size_flags_vertical = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot2/CenterContainer"]
 texture = ExtResource("4_b6ujd")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot2"]
+layout_mode = 2
+max_value = 360.0
+step = 0.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_0l08g")
+tint_progress = Color(0, 0, 0, 0.631373)
+script = ExtResource("4_4kw3n")
+index = 1
 
 [node name="WeaponSlot3" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons"]
 custom_minimum_size = Vector2(65, 65)
@@ -98,6 +122,17 @@ size_flags_vertical = 4
 [node name="Sprite2D" type="Sprite2D" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot3/CenterContainer"]
 texture = ExtResource("5_at66j")
 
+[node name="CooldownBar" type="TextureProgressBar" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot3"]
+layout_mode = 2
+max_value = 360.0
+step = 0.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_0l08g")
+tint_progress = Color(0, 0, 0, 0.631373)
+script = ExtResource("4_4kw3n")
+index = 2
+
 [node name="WeaponSlot4" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons"]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
@@ -112,6 +147,17 @@ size_flags_vertical = 4
 [node name="Sprite2D" type="Sprite2D" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot4/CenterContainer"]
 texture = ExtResource("6_gn0i2")
 
+[node name="CooldownBar" type="TextureProgressBar" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot4"]
+layout_mode = 2
+max_value = 360.0
+step = 0.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_0l08g")
+tint_progress = Color(0, 0, 0, 0.631373)
+script = ExtResource("4_4kw3n")
+index = 3
+
 [node name="WeaponSlot5" type="PanelContainer" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons"]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
@@ -125,6 +171,17 @@ size_flags_vertical = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot5/CenterContainer"]
 texture = ExtResource("6_gn0i2")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot5"]
+layout_mode = 2
+max_value = 360.0
+step = 0.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_0l08g")
+tint_progress = Color(0, 0, 0, 0.631373)
+script = ExtResource("4_4kw3n")
+index = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/SplitContainer"]
 layout_mode = 2
@@ -164,4 +221,16 @@ theme = ExtResource("2_f4cni")
 [node name="Timer" type="Timer" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
 autostart = true
 
+[connection signal="startcooldown" from="." to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons" method="_on_ui_startcooldown"]
+[connection signal="startcooldown" from="." to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot4/CooldownBar" method="_on_ui_startcooldown"]
+[connection signal="startcooldown" from="." to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot5/CooldownBar" method="_on_ui_startcooldown"]
+[connection signal="startcooldown" from="." to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot3/CooldownBar" method="_on_ui_startcooldown"]
+[connection signal="startcooldown" from="." to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot2/CooldownBar" method="_on_ui_startcooldown"]
+[connection signal="startcooldown" from="." to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot1/CooldownBar" method="_on_ui_startcooldown"]
+[connection signal="end_cooldown" from="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons" to="." method="_on_weapons_end_cooldown"]
+[connection signal="cooldown_done" from="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot1/CooldownBar" to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons" method="_on_cooldown_bar_cooldown_done"]
+[connection signal="cooldown_done" from="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot2/CooldownBar" to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons" method="_on_cooldown_bar_cooldown_done"]
+[connection signal="cooldown_done" from="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot3/CooldownBar" to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons" method="_on_cooldown_bar_cooldown_done"]
+[connection signal="cooldown_done" from="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot4/CooldownBar" to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons" method="_on_cooldown_bar_cooldown_done"]
+[connection signal="cooldown_done" from="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons/WeaponSlot5/CooldownBar" to="Control/MarginContainer/SplitContainer/Weapons & Health/Weapons" method="_on_cooldown_bar_cooldown_done"]
 [connection signal="timeout" from="Control/MarginContainer/SplitContainer/VBoxContainer/Timer/Timer" to="." method="_on_timer_timeout"]

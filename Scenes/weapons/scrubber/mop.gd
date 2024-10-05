@@ -5,6 +5,8 @@ var WEAPON_RIG : Node3D
 
 @export var WEAPON_DATA : Weapon_Data
 @export var attack_timer : Timer
+var max_ammo : int
+var ammo
 
 var can_attack: bool = true
 
@@ -15,7 +17,14 @@ func _ready() -> void:
 	WEAPON_RIG = get_parent().get_parent()
 	CAMERA = WEAPON_RIG.get_parent()
 	attack_timer.wait_time = WEAPON_DATA.attackTime
+	max_ammo = WEAPON_DATA.ammo
+	ammo = max_ammo
 
+
+func has_ammo() -> bool : 
+	if ammo <= 0 :
+		return false
+	return true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
