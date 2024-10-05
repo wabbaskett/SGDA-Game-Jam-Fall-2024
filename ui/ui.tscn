@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c54vrlkytlw66"]
+[gd_scene load_steps=12 format=3 uid="uid://c54vrlkytlw66"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_fhuq0"]
 [ext_resource type="Theme" uid="uid://cr8plgujluwta" path="res://ui/ui_theme.tres" id="2_f4cni"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bci6vl5bqktdg" path="res://ui/Bleach.png" id="4_b6ujd"]
 [ext_resource type="Texture2D" uid="uid://djqxcmmmrk1n8" path="res://ui/Grapple.png" id="5_at66j"]
 [ext_resource type="Texture2D" uid="uid://cllvlbrxqduw7" path="res://ui/Free.png" id="6_gn0i2"]
+[ext_resource type="Script" path="res://ui/text_edit.gd" id="9_3nlbl"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_evoc8"]
 size = Vector2(1000, 60)
@@ -28,6 +29,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,6 +42,7 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="SplitContainer" type="SplitContainer" parent="Control/MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Weapons & Health" type="VSplitContainer" parent="Control/MarginContainer/SplitContainer"]
@@ -52,38 +55,8 @@ size_flags_horizontal = 8
 [node name="Objective" type="HBoxContainer" parent="Control/MarginContainer/SplitContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Objective" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Objective"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_f4cni")
-text = "Objective: Find the Mold"
-
-[node name="Timer" type="HBoxContainer" parent="Control/MarginContainer/SplitContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TimerText" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
-layout_mode = 2
-text = "Time Elapsed:"
-
-[node name="HoursTimer" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_f4cni")
-
-[node name="MinutesTimer" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_f4cni")
-
-[node name="SecondsTimer" type="Label" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_f4cni")
-
-[node name="Timer" type="Timer" parent="Control/MarginContainer/SplitContainer/VBoxContainer/Timer"]
-autostart = true
-
 [node name="HealthBar" type="TextureProgressBar" parent="Control"]
+visible = false
 layout_mode = 2
 anchor_left = 0.019
 anchor_top = 0.042
@@ -98,6 +71,7 @@ texture_progress = SubResource("PlaceholderTexture2D_evoc8")
 tint_progress = Color(1, 0, 0.0166664, 0.894118)
 
 [node name="Weapons" type="VBoxContainer" parent="Control" node_paths=PackedStringArray("WEAPON_SLOTS")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017
@@ -239,16 +213,78 @@ tint_progress = Color(0, 0, 0, 0.631373)
 script = ExtResource("4_4kw3n")
 index = 4
 
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.057
+anchor_right = 0.212
+anchor_bottom = 0.132
+offset_left = -0.200005
+offset_top = 0.439995
+offset_right = -0.0400391
+offset_bottom = 0.440002
+grow_vertical = 2
+
+[node name="Timer" type="HBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.159
+anchor_top = 0.358
+anchor_right = 0.431
+anchor_bottom = 0.642
+offset_left = 0.0989952
+offset_top = 0.0019989
+offset_right = -0.109009
+offset_bottom = -0.00200272
+grow_vertical = 2
+
+[node name="TimerText" type="Label" parent="Control/Panel/Timer"]
+layout_mode = 2
+text = "Time Left:"
+
+[node name="HoursTimer" type="Label" parent="Control/Panel/Timer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_f4cni")
+
+[node name="MinutesTimer" type="Label" parent="Control/Panel/Timer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_f4cni")
+
+[node name="SecondsTimer" type="Label" parent="Control/Panel/Timer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_f4cni")
+
+[node name="Timer" type="Timer" parent="Control/Panel/Timer"]
+autostart = true
+
+[node name="Collectibles" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextEdit" type="TextEdit" parent="Control/Collectibles"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 159.0
+offset_right = 407.0
+offset_bottom = 234.0
+text = "Collectibles: 0 / 10"
+script = ExtResource("9_3nlbl")
+
 [connection signal="startcooldown" from="." to="Control/Weapons" method="_on_ui_startcooldown"]
+[connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot1/CooldownBar" method="_on_ui_startcooldown"]
+[connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot2/CooldownBar" method="_on_ui_startcooldown"]
+[connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot3/CooldownBar" method="_on_ui_startcooldown"]
 [connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot4/CooldownBar" method="_on_ui_startcooldown"]
 [connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot5/CooldownBar" method="_on_ui_startcooldown"]
-[connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot3/CooldownBar" method="_on_ui_startcooldown"]
-[connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot2/CooldownBar" method="_on_ui_startcooldown"]
-[connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot1/CooldownBar" method="_on_ui_startcooldown"]
-[connection signal="timeout" from="Control/MarginContainer/SplitContainer/VBoxContainer/Timer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="end_cooldown" from="Control/Weapons" to="." method="_on_weapons_end_cooldown"]
 [connection signal="cooldown_done" from="Control/Weapons/WeaponSlot1/CooldownBar" to="Control/Weapons" method="_on_cooldown_bar_cooldown_done"]
 [connection signal="cooldown_done" from="Control/Weapons/WeaponSlot2/CooldownBar" to="Control/Weapons" method="_on_cooldown_bar_cooldown_done"]
 [connection signal="cooldown_done" from="Control/Weapons/WeaponSlot3/CooldownBar" to="Control/Weapons" method="_on_cooldown_bar_cooldown_done"]
 [connection signal="cooldown_done" from="Control/Weapons/WeaponSlot4/CooldownBar" to="Control/Weapons" method="_on_cooldown_bar_cooldown_done"]
 [connection signal="cooldown_done" from="Control/Weapons/WeaponSlot5/CooldownBar" to="Control/Weapons" method="_on_cooldown_bar_cooldown_done"]
+[connection signal="timeout" from="Control/Panel/Timer/Timer" to="." method="_on_timer_timeout"]
