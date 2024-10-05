@@ -34,7 +34,7 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:Spool": {
-"import/skip_import": true
+"mesh_instance/layers": 2
 }
 }
 }

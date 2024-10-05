@@ -1,15 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=31 format=4 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" path="res://addons/fpc/character.gd" id="1_0t4e8"]
 [ext_resource type="PackedScene" uid="uid://bwffp5l7qk167" path="res://weapon.tscn" id="2_rpwmn"]
 [ext_resource type="Script" path="res://Scenes/weapons/Weapons.gd" id="3_a8dxt"]
-[ext_resource type="Resource" uid="uid://dqxumepfdyf5n" path="res://Scenes/weapons/shooter/shooter.tres" id="3_j70n8"]
 [ext_resource type="Script" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
-[ext_resource type="PackedScene" uid="uid://dqq4tf30xlcp5" path="res://Scenes/weapons/scrubber/mop.tscn" id="4_qys4g"]
-[ext_resource type="Resource" uid="uid://610gfbkj27u7" path="res://Scenes/weapons/scrubber/mop_data.tres" id="4_wu422"]
 [ext_resource type="PackedScene" uid="uid://bnmhmak5266lh" path="res://addons/fpc/rope.tscn" id="6_8w2y7"]
-[ext_resource type="Resource" uid="uid://c0c5nttxwwk6e" path="res://Scenes/weapons/flamethrower/flamethrower.tres" id="6_a2n8c"]
 [ext_resource type="Resource" uid="uid://dhqsnh6wkqxe7" path="res://Scenes/weapons/grapple/grapple.tres" id="6_kxeo8"]
 [ext_resource type="PackedScene" uid="uid://c54vrlkytlw66" path="res://ui/ui.tscn" id="7_sfxqt"]
 [ext_resource type="Script" path="res://addons/fpc/weapon_viewport.gd" id="12_f00hw"]
@@ -159,14 +155,44 @@ _data = {
 "crouch": SubResource("Animation_5ec5e")
 }
 
-[sub_resource type="Resource" id="Resource_omvvd"]
-resource_local_to_scene = true
-script = ExtResource("3_a8dxt")
-name = &"scrubber"
-position = Vector3(1.21, 0.08, -8.33)
-rotation = Vector3(0, -263, 98)
-weaponScene = ExtResource("4_qys4g")
-weaponData = ExtResource("4_wu422")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmbsl"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.136356, 0.136356, 0.136356, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m0rpq"]
+_surfaces = [{
+"aabb": AABB(-0.951057, -1, -9.93289, 1.90211, 1.80902, 9.93289),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAFAAMAAgAEAAUABAAHAAUABAAGAAcABQABAAMAAQAHAAkAAQAFAAcABgAJAAcABgAIAAkACAABAAkACAAAAAEACAACAAAAAgAGAAQAAgAIAAYA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("/38AAP//AAD/fwAAAAAAAP//yGH//wAA///IYQAAAAAaz/7///8AABrP//8AAAAA5DD+////AADkMP//AAAAAAAAyGH//wAAAADIYQAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_niagp"]
+resource_name = "RopeMesh(1)_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.951057, -1, -9.93289, 1.90211, 1.80902, 9.93289),
+"attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv//AAAAAAAAbfoCrczM/3/MzP9/bnoCrczMAADMzAAAHOSz8ZmZ/3+Zmf9/HGSz8ZmZAACZmQAA4puz8WZm/39mZv9/4huz8WZmAABmZgAAkIUCrTMz/38zM/9/kQUCrTMzAAAzMwAA"),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AQAKAAQAAQAHAAoACAARAAsACAAOABEADQAWABAADQATABYADwADAAkAAwAVABsAAwAPABUAFAAdABcAFAAaAB0AGQAFABwAGQACAAUAGAAGAAAABgASAAwABgAYABIA"),
+"material": SubResource("StandardMaterial3D_xmbsl"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("/38AAP///n//fwAA//8L7v9/AAD//wvu/38AAAAA////fwAAAAAL7v9/AAAAAAvu///IYf///n///8hh//8L7v//yGH//17O///IYQAA/////8hhAAAL7v//yGEAAF7OGs/+/////n8az/7/////vxrP/v///17OGs///wAA//8az///AAD/vxrP//8AAF7O5DD+/////n/kMP7/////v+Qw/v///17O5DD//wAA///kMP//AAD/v+Qw//8AAF7OAADIYf///n8AAMhh//8L7gAAyGH//17OAADIYQAA//8AAMhhAAAL7gAAyGEAAF7O/3///+OR8UjxyBvu////f+OR8UjxyBvu/3///+OR8UgstBZa////f+OR8UgstBZa/3///////38stBZa////f////38stBZa/3///////38V2tHL////f////38V2tHL/3////HIG+4V2tHL/v//f/HIG+4V2tHL")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_m0rpq")
 
 [sub_resource type="Animation" id="Animation_gh776"]
 resource_name = "RESET"
@@ -372,9 +398,16 @@ MarginContainer/constants/margin_top = 10
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
 [node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH", "GRAPPLE_CAST", "ROPE", "GRAPPLESTART")]
+wall_min_slide_angle = 0.797615
+floor_stop_on_slope = false
 script = ExtResource("1_0t4e8")
-grapple_acceleration = 15.0
-grapple_adjustment = 0.25
+base_speed = 10.0
+sprint_speed = 10.0
+grapple_speed = 15.0
+motion_acceleration = 5.0
+air_acceleration = 0.1
+grapple_acceleration = 30.0
+grapple_adjustment = 0.3
 grapple_stop_distance = 6.0
 default_reticle = "res://addons/fpc/reticles/reticle_1.tscn"
 HEAD = NodePath("Head")
@@ -412,13 +445,17 @@ unique_name_in_owner = true
 [node name="Weapon" parent="Head/Camera/WeaponRig" node_paths=PackedStringArray("CAMERA") instance=ExtResource("2_rpwmn")]
 transform = Transform3D(0.991696, -0.117536, 0.0521674, 0.121477, 0.989348, -0.0801989, -0.0421854, 0.0858701, 0.995413, 1.6, -1.4, -2.21)
 CAMERA = NodePath("../..")
-WEAPON = Array[ExtResource("3_a8dxt")]([SubResource("Resource_omvvd"), ExtResource("3_j70n8"), ExtResource("6_kxeo8"), ExtResource("6_a2n8c"), ExtResource("6_a2n8c")])
+
+WEAPON = Array[ExtResource("3_a8dxt")]([ExtResource("6_kxeo8")])
 
 [node name="GrappleStart" type="Marker3D" parent="Head/Camera/WeaponRig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68, -0.11, -0.89)
 
-[node name="Rope" parent="Head/Camera/WeaponRig/GrappleStart" instance=ExtResource("6_8w2y7")]
+[node name="Rope" type="MeshInstance3D" parent="Head/Camera/WeaponRig/GrappleStart" instance=ExtResource("6_8w2y7")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 visible = false
+mesh = SubResource("ArrayMesh_niagp")
+skeleton = NodePath("")
 
 [node name="GrappleCast" type="RayCast3D" parent="Head/Camera"]
 target_position = Vector3(0, 0, -600)

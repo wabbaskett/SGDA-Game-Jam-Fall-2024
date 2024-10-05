@@ -1,14 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://c54vrlkytlw66"]
+
+[gd_scene load_steps=18 format=3 uid="uid://c54vrlkytlw66"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_fhuq0"]
 [ext_resource type="Theme" uid="uid://cr8plgujluwta" path="res://ui/ui_theme.tres" id="2_f4cni"]
-[ext_resource type="Script" path="res://ui/weapon_ui.gd" id="3_attpi"]
 [ext_resource type="Texture2D" uid="uid://lkh4hm3pad2p" path="res://ui/Mop.png" id="3_htwxt"]
 [ext_resource type="Script" path="res://ui/cooldown_bar.gd" id="4_4kw3n"]
 [ext_resource type="Texture2D" uid="uid://bci6vl5bqktdg" path="res://ui/Bleach.png" id="4_b6ujd"]
 [ext_resource type="Texture2D" uid="uid://djqxcmmmrk1n8" path="res://ui/Grapple.png" id="5_at66j"]
 [ext_resource type="Texture2D" uid="uid://cllvlbrxqduw7" path="res://ui/Free.png" id="6_gn0i2"]
 [ext_resource type="Script" path="res://ui/text_edit.gd" id="9_3nlbl"]
+[ext_resource type="Script" path="res://ui/music_player.gd" id="8_6ckfc"]
+[ext_resource type="AudioStream" uid="uid://r6knsmmgd0n4" path="res://sounds/music/Kevin-MacLeod-Investigations(chosic.com).mp3" id="9_hcwre"]
+[ext_resource type="AudioStream" uid="uid://ddoiqvo2jexuy" path="res://sounds/music/Monkeys-Spinning-Monkeys(chosic.com).mp3" id="10_blyn8"]
+[ext_resource type="AudioStream" uid="uid://rsw7ncd8f8a1" path="res://sounds/music/Sneaky-Adventure(chosic.com).mp3" id="11_ye6vl"]
+[ext_resource type="AudioStream" uid="uid://mef7dp1b5m24" path="res://sounds/music/The-Builder(chosic.com).mp3" id="12_8wjjt"]
+[ext_resource type="AudioStream" uid="uid://dfqjrcmoskeg4" path="res://sounds/music/Sneaky-Snitch(chosic.com).mp3" id="12_p6ts8"]
+[ext_resource type="AudioStream" uid="uid://cqar55aews23y" path="res://sounds/music/Meatball-Parade(chosic.com).mp3" id="12_tuxxk"]
+[ext_resource type="AudioStream" uid="uid://ceh2wgi4de200" path="res://sounds/music/Run-Amok(chosic.com).mp3" id="13_6boqq"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_evoc8"]
 size = Vector2(1000, 60)
@@ -18,6 +26,7 @@ size = Vector2(1000, 60)
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("health_bar")]
 script = ExtResource("1_fhuq0")
 health_bar = NodePath("Control/HealthBar")
+minutes_time_limit = 10.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -70,7 +79,7 @@ value = 100.0
 texture_progress = SubResource("PlaceholderTexture2D_evoc8")
 tint_progress = Color(1, 0, 0.0166664, 0.894118)
 
-[node name="Weapons" type="VBoxContainer" parent="Control" node_paths=PackedStringArray("WEAPON_SLOTS")]
+[node name="Weapons" type="VBoxContainer" parent="Control"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -85,9 +94,6 @@ offset_bottom = 0.519958
 grow_vertical = 2
 size_flags_vertical = 4
 alignment = 1
-script = ExtResource("3_attpi")
-WEAPON_SLOTS = [NodePath("WeaponSlot1"), NodePath("WeaponSlot2"), NodePath("WeaponSlot3"), NodePath("WeaponSlot4"), NodePath("WeaponSlot5")]
-scale_increase = 1.5
 
 [node name="WeaponSlot1" type="PanelContainer" parent="Control/Weapons"]
 custom_minimum_size = Vector2(140, 140)
@@ -261,6 +267,7 @@ theme = ExtResource("2_f4cni")
 [node name="Timer" type="Timer" parent="Control/Panel/Timer"]
 autostart = true
 
+
 [node name="Collectibles" type="Control" parent="Control"]
 anchors_preset = 0
 offset_right = 40.0
@@ -275,6 +282,13 @@ offset_bottom = 234.0
 text = "Collectibles: 0 / 10"
 script = ExtResource("9_3nlbl")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.146
+script = ExtResource("8_6ckfc")
+music_playlist = Array[AudioStreamMP3]([ExtResource("9_hcwre"), ExtResource("10_blyn8"), ExtResource("11_ye6vl"), ExtResource("12_p6ts8")])
+transition_song = ExtResource("12_8wjjt")
+end_playlist = Array[AudioStreamMP3]([ExtResource("12_tuxxk"), ExtResource("13_6boqq")])
+
 [connection signal="startcooldown" from="." to="Control/Weapons" method="_on_ui_startcooldown"]
 [connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot1/CooldownBar" method="_on_ui_startcooldown"]
 [connection signal="startcooldown" from="." to="Control/Weapons/WeaponSlot2/CooldownBar" method="_on_ui_startcooldown"]
@@ -288,3 +302,4 @@ script = ExtResource("9_3nlbl")
 [connection signal="cooldown_done" from="Control/Weapons/WeaponSlot4/CooldownBar" to="Control/Weapons" method="_on_cooldown_bar_cooldown_done"]
 [connection signal="cooldown_done" from="Control/Weapons/WeaponSlot5/CooldownBar" to="Control/Weapons" method="_on_cooldown_bar_cooldown_done"]
 [connection signal="timeout" from="Control/Panel/Timer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

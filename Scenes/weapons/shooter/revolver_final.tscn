@@ -154,27 +154,21 @@ smoke_timer = NodePath("Smoke/Timer")
 attack_timer = NodePath("AttackTimer")
 
 [node name="Frame" parent="." index="0"]
-layers = 2
 material_override = SubResource("StandardMaterial3D_uc5c7")
 
 [node name="Nozzle" parent="." index="1"]
-layers = 2
 material_override = SubResource("StandardMaterial3D_4ebr0")
 
 [node name="Hammer" parent="." index="2"]
-layers = 2
 material_override = SubResource("StandardMaterial3D_kecvh")
 
 [node name="Trigger" parent="." index="3"]
-layers = 2
 material_override = SubResource("StandardMaterial3D_13aek")
 
 [node name="Grip" parent="." index="4"]
-layers = 2
 material_override = SubResource("StandardMaterial3D_d4otv")
 
 [node name="Cylinder" parent="." index="5"]
-layers = 2
 material_override = SubResource("StandardMaterial3D_ah60w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]

@@ -32,7 +32,7 @@ func _stop_grapple():
 func _orient_rope():
 	look_at_from_position(global_position, hookpoint)
 	scale = Vector3(scale.x, scale.y, absf(global_position.distance_to(hookpoint)))
-	print(scale.z)
+	#print(scale.z)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
