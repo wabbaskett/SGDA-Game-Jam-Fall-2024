@@ -3,7 +3,7 @@ class_name UI
 
 @export var health_bar: TextureProgressBar
 
-@onready var objective_label = %Objective
+#@onready var objective_label = %Objective
 @onready var hours_label = %HoursTimer
 @onready var mins_label = %MinutesTimer
 @onready var secs_label = %SecondsTimer

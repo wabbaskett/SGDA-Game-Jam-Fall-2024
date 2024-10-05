@@ -65,9 +65,9 @@ func load_weapon():
 		if current_instance != null : 
 			remove_child(current_instance)
 		current_instance = WEAPON[focused].weaponScene.instantiate()
-		current_instance.connect("on_cooldown", Callable(self, "enter_cooldown"))
+		#current_instance.connect("on_cooldown", Callable(self, "enter_cooldown"))
 		add_child(current_instance)
-		if focused == 2 : 
+		if focused == 0 : 
 			grapple_equipped.emit()
 		else : 
 			grapple_dequipped.emit()
@@ -85,4 +85,5 @@ func attack():
 	pass
 
 func _on_end_cooldown(index):
-	enabled_array[index] = true
+	pass
+	#enabled_array[index] = true
