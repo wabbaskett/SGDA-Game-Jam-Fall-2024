@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqc8unp23ht41"]
+
+[ext_resource type="PackedScene" uid="uid://bh34fdrd0cqei" path="res://Models/Bin.blend" id="1_wit0m"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3b63g"]
+points = PackedVector3Array(1.00055, -1, 1.40742, 0.999965, 0.72892, 1.82326, -1.00055, -1, 1.40742, 1.00055, -1, -1.40778, -1.00016, 0.72892, 1.82326, 0.999965, 0.72892, -1.82326, 0.498513, 0.749123, -0.944113, 0.372171, 0.743644, 0.0731732, -1.00055, -1, -1.40778, 0.0170416, 0.748438, -0.666055, -1.00016, 0.72892, -1.82326)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8lm87"]
+data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1)
+
+[node name="Bin2" instance=ExtResource("1_wit0m")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Bin" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bin/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_3b63g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Book" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Book/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_8lm87")

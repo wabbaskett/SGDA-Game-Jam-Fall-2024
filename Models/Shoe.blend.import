@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0csvwg86yyw1"
-path="res://.godot/imported/shelf.blend-2e0b00aaba5e531099b8c31970606412.scn"
+uid="uid://bnnv4ujuv6bj4"
+path="res://.godot/imported/Shoe.blend-0d3fc66559566478f7fd3411bc4b8ffd.scn"
 
 [deps]
 
-source_file="res://Models/shelf.blend"
-dest_files=["res://.godot/imported/shelf.blend-2e0b00aaba5e531099b8c31970606412.scn"]
+source_file="res://Models/Shoe.blend"
+dest_files=["res://.godot/imported/Shoe.blend-0d3fc66559566478f7fd3411bc4b8ffd.scn"]
 
 [params]
 

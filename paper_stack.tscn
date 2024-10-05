@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxi0k4gx5atdq"]
+
+[ext_resource type="PackedScene" uid="uid://buddreopj0ha4" path="res://Models/PaperStack.blend" id="1_oplkq"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lwtql"]
+points = PackedVector3Array(1.00074, 2.99703, 1.0026, 1.00213, 6.41186, 0.997387, -1, 0.999572, 0.999995, 1.00074, 0.997798, 1.0026, 1.00213, 2.94026, 0.997387, 1.02152, -4.13953, -1.00346, 1.02132, 6.41186, -1.00226, -0.997625, 6.41186, 0.954056, -0.999209, 2.99703, 0.976524, -1, 0.999572, -1.00005, -1, -4.21581, 0.999995, 1.00074, -9.85338, 1.0014, 1.00213, -6.13875, 0.996384, 1.02152, -6.13875, -1.00346, 0.999952, -9.71146, -1.00868, -0.978431, 6.41186, -1.04579, -1, -9.71146, -1.00868, -1, -11.7107, 0.991168, 0.999952, -11.7107, 0.991168, 1.01222, -9.85338, -0.998646, 0.999952, -11.7107, -1.00868, -0.978431, -4.13953, -1.04679, -1, -11.7107, -1.00868, -0.987732, -9.85338, -1.02452, -0.978431, -6.13875, -1.04679)
+
+[node name="PaperStack" instance=ExtResource("1_oplkq")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_002" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_002/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_lwtql")

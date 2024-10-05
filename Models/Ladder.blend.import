@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0csvwg86yyw1"
-path="res://.godot/imported/shelf.blend-2e0b00aaba5e531099b8c31970606412.scn"
+uid="uid://dbdo6dyg7hau3"
+path="res://.godot/imported/Ladder.blend-54e033e733db371e8a994012d3ee0b70.scn"
 
 [deps]
 
-source_file="res://Models/shelf.blend"
-dest_files=["res://.godot/imported/shelf.blend-2e0b00aaba5e531099b8c31970606412.scn"]
+source_file="res://Models/Ladder.blend"
+dest_files=["res://.godot/imported/Ladder.blend-54e033e733db371e8a994012d3ee0b70.scn"]
 
 [params]
 

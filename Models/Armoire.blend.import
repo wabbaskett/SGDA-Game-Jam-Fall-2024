@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0csvwg86yyw1"
-path="res://.godot/imported/shelf.blend-2e0b00aaba5e531099b8c31970606412.scn"
+uid="uid://dqr2d7b5s5brr"
+path="res://.godot/imported/Armoire.blend-ff01f8e265fba57a86754333c3b669fa.scn"
 
 [deps]
 
-source_file="res://Models/shelf.blend"
-dest_files=["res://.godot/imported/shelf.blend-2e0b00aaba5e531099b8c31970606412.scn"]
+source_file="res://Models/Armoire.blend"
+dest_files=["res://.godot/imported/Armoire.blend-ff01f8e265fba57a86754333c3b669fa.scn"]
 
 [params]
 

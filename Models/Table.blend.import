@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmbyyxuclotw8"
-path="res://.godot/imported/DeskFINAL.blend-4ac859fda59d8611c6139549853dcc3f.scn"
+uid="uid://dyre8jgel4l3e"
+path="res://.godot/imported/Table.blend-3d70efda2bd57332e92ccc8585b9e9f9.scn"
 
 [deps]
 
-source_file="res://Models/DeskFINAL.blend"
-dest_files=["res://.godot/imported/DeskFINAL.blend-4ac859fda59d8611c6139549853dcc3f.scn"]
+source_file="res://Models/Table.blend"
+dest_files=["res://.godot/imported/Table.blend-3d70efda2bd57332e92ccc8585b9e9f9.scn"]
 
 [params]
 

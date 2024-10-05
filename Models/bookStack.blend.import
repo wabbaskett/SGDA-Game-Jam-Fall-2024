@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0csvwg86yyw1"
-path="res://.godot/imported/shelf.blend-2e0b00aaba5e531099b8c31970606412.scn"
+uid="uid://bysk53eykbfcl"
+path="res://.godot/imported/bookStack.blend-7a59c4945bf1f5930ea1e86dc882be81.scn"
 
 [deps]
 
-source_file="res://Models/shelf.blend"
-dest_files=["res://.godot/imported/shelf.blend-2e0b00aaba5e531099b8c31970606412.scn"]
+source_file="res://Models/bookStack.blend"
+dest_files=["res://.godot/imported/bookStack.blend-7a59c4945bf1f5930ea1e86dc882be81.scn"]
 
 [params]
 

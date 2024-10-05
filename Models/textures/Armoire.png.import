@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr0ouwpho3x2n"
-path.s3tc="res://.godot/imported/DeskTop.png-c30f209b080e96a3d49d74a098743fdb.s3tc.ctex"
+uid="uid://qbumos0bgide"
+path.s3tc="res://.godot/imported/Armoire.png-32a929a23b66c769440a81c4d11efa88.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Models/textures/DeskTop.png"
-dest_files=["res://.godot/imported/DeskTop.png-c30f209b080e96a3d49d74a098743fdb.s3tc.ctex"]
+source_file="res://Models/textures/Armoire.png"
+dest_files=["res://.godot/imported/Armoire.png-32a929a23b66c769440a81c4d11efa88.s3tc.ctex"]
 
 [params]
 
