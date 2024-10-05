@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=4 format=3 uid="uid://dhqsnh6wkqxe7"]
+
+[ext_resource type="Script" path="res://Scenes/weapons/Weapons.gd" id="1_3b8uj"]
+[ext_resource type="Resource" uid="uid://bgai8433wenkx" path="res://Scenes/weapons/grapple/grapple_data.tres" id="2_q1mgc"]
+[ext_resource type="PackedScene" uid="uid://df40hk3eyjdda" path="res://Scenes/weapons/grapple/grapple.tscn" id="3_fsrny"]
+
+[resource]
+script = ExtResource("1_3b8uj")
+name = &"Grapple"
+position = Vector3(1.6, -1.4, -2.21)
+rotation = Vector3(4.6, 3, 7)
+weaponScene = ExtResource("3_fsrny")
+weaponData = ExtResource("2_q1mgc")

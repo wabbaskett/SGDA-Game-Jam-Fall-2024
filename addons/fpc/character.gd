@@ -9,6 +9,8 @@ extends CharacterBody3D
 
 ## The settings for the character's movement and feel.
 @export_category("Character")
+## The health of the player
+@export var max_health : int = 100
 ## The speed that the character moves at without crouching or sprinting.
 @export var base_speed : float = 3.0
 ## The speed that the character moves at when sprinting.
@@ -97,8 +99,13 @@ extends CharacterBody3D
 ## Use with caution.
 @export var gravity_enabled : bool = true
 
+signal update_health(change, max_health)
+signal weapon_attack()
+signal grapple_to(hookpoint)
+signal grapple_end()
 
 # Member variables
+var health : int = max_health
 var speed : float = base_speed
 var current_speed : float = 0.0
 # States: normal, crouching, sprinting
@@ -108,13 +115,14 @@ var was_on_floor : bool = true # Was the player on the floor last frame (for lan
 
 # grapple hook variables
 var grappling = false
+var grapple_equipped = false
 var hookpoint = Vector3()
 var hookpoint_get = false
 var direction_to_hook : Vector3
 var distance_to_hook : float = INF
 var smallest_distance_to_hook : float = INF
 var velocity_adjustment : float = 0.0
-var rope
+var rope_scale : Vector3
 
 # The reticle should always have a Control node as the root
 var RETICLE : Control
@@ -129,7 +137,9 @@ func _ready():
 	#It is safe to comment this line if your game doesn't start with the mouse captured
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ROPE.transform = GRAPPLESTART.transform
+	rope_scale = ROPE.scale
 	print(in_air_momentum)
+	
 	
 	# If the controller is rotated in a certain direction for game design purposes, redirect this rotation into the head.
 	HEAD.rotation.y = rotation.y
@@ -210,7 +220,7 @@ func _physics_process(delta):
 	if !immobile: # Immobility works by interrupting user input, so other forces can still be applied to the player
 		input_dir = Input.get_vector(LEFT, RIGHT, FORWARD, BACKWARD)
 	handle_movement(delta, input_dir)
-
+	handle_weapon_state()
 	handle_head_rotation()
 	
 	# The player is not able to stand up if the ceiling is too low
@@ -219,7 +229,7 @@ func _physics_process(delta):
 	handle_state(input_dir)
 	
 	#handle_grappling()
-	if hookpoint_get:
+	if hookpoint_get and grappling:
 		
 		direction_to_hook = transform.origin.direction_to(hookpoint)
 		distance_to_hook = transform.origin.distance_to(hookpoint)
@@ -357,7 +367,7 @@ func handle_state(moving):
 						if !$CrouchCeilingDetection.is_colliding():
 							enter_normal_state()
 							
-	if grappling_enabled: 
+	if grapple_equipped: 
 		if grapple_mode == 0:
 			if Input.is_action_pressed(GRAPPLE) :
 				if GRAPPLE_CAST.is_colliding() and smallest_distance_to_hook > grapple_stop_distance:
@@ -384,9 +394,11 @@ func enter_normal_state():
 		CROUCH_ANIMATION.play_backwards("crouch")
 	state = "normal"
 	speed = base_speed
-	grappling = false
+	if grappling :
+		grapple_end.emit()
+		grappling = false
 	ROPE.visible = false
-	ROPE.scale = Vector3(1, 1, 1)
+	ROPE.scale = rope_scale
 	hookpoint_get = false
 	smallest_distance_to_hook = INF
 
@@ -412,19 +424,24 @@ func enter_grapple_state():
 		CROUCH_ANIMATION.play_backwards("crouch")
 	state = "grappling"
 	grappling = true
-	ROPE.visible = true
 	speed = grapple_speed
 	if not hookpoint_get:
 		hookpoint = GRAPPLE_CAST.get_collision_point()
 		hookpoint_get = true
-		orient_grapple_rope()
+		grapple_to.emit(hookpoint)
+		#orient_grapple_rope()
 		distance_to_hook = transform.origin.distance_to(hookpoint)
 		smallest_distance_to_hook = INF
 	
 
 func orient_grapple_rope():
-	ROPE.look_at_from_position(GRAPPLESTART.global_position + Vector3(0,0,.5), hookpoint)
-	ROPE.scale = Vector3(1, 1, absf(GRAPPLESTART.position.distance_to(hookpoint)))
+	pass
+	#ROPE.look_at_from_position(GRAPPLESTART.global_position, hookpoint)
+	#ROPE.scale = Vector3(rope_scale.x, rope_scale.y, absf(GRAPPLESTART.position.distance_to(hookpoint)))
+
+func take_damage(damage : int):
+	health -= damage
+	update_health.emit(-damage, max_health)
 
 func update_camera_fov():
 	if state == "sprinting":
@@ -460,8 +477,14 @@ func headbob_animation(moving):
 			HEADBOB_ANIMATION.speed_scale = 1
 			HEADBOB_ANIMATION.play("RESET", 1)
 
+func handle_weapon_state():
+	if Input.is_action_just_pressed("attack"):
+		weapon_attack.emit()
+	
+
 
 func _process(delta):
+	
 	$UserInterface/DebugPanel.add_property("FPS", Performance.get_monitor(Performance.TIME_FPS), 0)
 	var status : String = state
 	if !is_on_floor():
@@ -490,3 +513,12 @@ func _unhandled_input(event : InputEvent):
 			# Where we're going, we don't need InputMap
 			if event.keycode == 4194338: # F7
 				$UserInterface/DebugPanel.visible = !$UserInterface/DebugPanel.visible
+
+
+func _on_weapon_grapple_equipped():
+	grapple_equipped = true
+
+
+func _on_weapon_grapple_dequipped():
+	grappling = false
+	grapple_equipped = false

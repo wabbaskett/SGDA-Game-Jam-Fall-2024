@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Weapon_Data" load_steps=2 format=3 uid="uid://cvwtbgwuxedh0"]
+
+[ext_resource type="Script" path="res://Scenes/weapons/Weapon_Data.gd" id="1_a2sq2"]
+
+[resource]
+script = ExtResource("1_a2sq2")
+damage = 8
+attackTime = 0.0
+cooldownTime = 45.0
+isHitscan = false
+range = 0.0
+ammo = 50
