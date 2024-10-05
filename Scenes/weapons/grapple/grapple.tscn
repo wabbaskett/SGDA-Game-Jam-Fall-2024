@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://df40hk3eyjdda"]
+[gd_scene load_steps=9 format=3 uid="uid://df40hk3eyjdda"]
 
 [ext_resource type="PackedScene" uid="uid://i4rhfpaumlp1" path="res://Models/Weapons/HookGun.blend" id="1_2qexp"]
 [ext_resource type="Script" path="res://Scenes/weapons/grapple/animation_player.gd" id="2_evqer"]
 [ext_resource type="PackedScene" uid="uid://bnmhmak5266lh" path="res://addons/fpc/rope.tscn" id="2_u6i5q"]
 [ext_resource type="Script" path="res://addons/fpc/grapple_rope.gd" id="3_dk2sn"]
+[ext_resource type="AudioStream" uid="uid://hpljcelhdxdg" path="res://sounds/sfx/grapplehook.wav" id="5_u2yow"]
 
 [sub_resource type="Animation" id="Animation_1l42p"]
 length = 0.001
@@ -80,16 +81,21 @@ layers = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52321, 5.22639, 0)
 layers = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" node_paths=PackedStringArray("grapple_sfx")]
 libraries = {
 "": SubResource("AnimationLibrary_groap")
 }
 script = ExtResource("2_evqer")
+grapple_sfx = NodePath("../AudioStreamPlayer")
 
 [node name="Rope" parent="." index="3" instance=ExtResource("2_u6i5q")]
 transform = Transform3D(-1.74846e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.74846e-08, 3.61972, 4.94794, -4.76837e-07)
 visible = false
 script = ExtResource("3_dk2sn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("5_u2yow")
+volume_db = -20.0
 
 [connection signal="launch_grapple" from="Rope" to="AnimationPlayer" method="_on_rope_launch_grapple"]
 [connection signal="stop_grapple" from="Rope" to="AnimationPlayer" method="_on_rope_stop_grapple"]

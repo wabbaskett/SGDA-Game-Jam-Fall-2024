@@ -46,10 +46,11 @@ func previousWeapon():
 		load_weapon()
 	
 func _input(event):
-	if event.is_action_pressed("next_weapon"):
-		nextWeapon()
-	if event.is_action_pressed("previous_weapon"):
-		previousWeapon()
+	pass
+	#if event.is_action_pressed("next_weapon"):
+		#nextWeapon()
+	#if event.is_action_pressed("previous_weapon"):
+		#previousWeapon()
 #
 #func _input(event):
 	#if event.is_action_pressed("weapon1"):

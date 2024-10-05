@@ -266,6 +266,7 @@ theme = ExtResource("2_f4cni")
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.146
 script = ExtResource("8_6ckfc")
 music_playlist = Array[AudioStreamMP3]([ExtResource("9_hcwre"), ExtResource("10_blyn8"), ExtResource("11_ye6vl"), ExtResource("12_p6ts8")])
 transition_song = ExtResource("12_8wjjt")
