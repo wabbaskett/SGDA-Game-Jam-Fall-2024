@@ -609,7 +609,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70474, 48.368, -65.4952)
 base_speed = 6.0
 sprint_speed = 12.0
 crouch_speed = 2.0
-acceleration = 20.0
 jump_velocity = 6.0
 controller_sensitivity = 0.08
 
@@ -829,37 +828,31 @@ shape = SubResource("CapsuleShape3D_6uvte")
 
 [node name="Shell" type="MeshInstance3D" parent="Collectibles/Flamethrower/Meshes" index="0"]
 transform = Transform3D(0.291896, 0, 0, 0, 0, -0.28007, 0, -3.71958, 0, 0, 0.150996, 3.39188)
-layers = 2
 mesh = SubResource("ArrayMesh_oeils")
 skeleton = NodePath("")
 
 [node name="Barrel" type="MeshInstance3D" parent="Collectibles/Flamethrower/Meshes" index="1"]
 transform = Transform3D(0.153015, 0, 0, 0, 0, -0.233953, 0, 3.62017, 0, 0, 0.0681151, 3.41793)
-layers = 2
 mesh = SubResource("ArrayMesh_55unb")
 skeleton = NodePath("")
 
 [node name="Chassis" type="MeshInstance3D" parent="Collectibles/Flamethrower/Meshes" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25314)
-layers = 2
 mesh = SubResource("ArrayMesh_hnrjw")
 skeleton = NodePath("")
 
 [node name="BarrelEnd" type="MeshInstance3D" parent="Collectibles/Flamethrower/Meshes" index="3"]
 transform = Transform3D(0.956881, 0, 0, 0, 0.956881, 0, 0, 0, 0.956881, 0, 0, 10.1664)
-layers = 2
 mesh = SubResource("ArrayMesh_mabla")
 skeleton = NodePath("")
 
 [node name="Cylinder" type="MeshInstance3D" parent="Collectibles/Flamethrower/Meshes" index="4"]
 transform = Transform3D(0.376454, 0.034315, 0.010877, -0.0139963, 0.150535, 0.369373, 0.0144101, -0.750243, 0.0746114, -0.925744, 0.663727, -1.45654)
-layers = 2
 mesh = SubResource("ArrayMesh_ik2ne")
 skeleton = NodePath("")
 
 [node name="Plane" type="MeshInstance3D" parent="Collectibles/Flamethrower/Meshes" index="5"]
 transform = Transform3D(0.199167, 0, 0, 0, 0, 0.199167, 0, -0.199167, 0, 0, 0, 4.65737)
-layers = 2
 mesh = SubResource("ArrayMesh_iph6m")
 skeleton = NodePath("")
 
@@ -872,7 +865,6 @@ shape = SubResource("BoxShape3D_bv45w")
 
 [node name="Cube" type="MeshInstance3D" parent="Collectibles/MopStick/Meshes" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 0, 1)
-layers = 2
 mesh = SubResource("ArrayMesh_jh7l0")
 skeleton = NodePath("")
 
@@ -885,42 +877,36 @@ shape = SubResource("CylinderShape3D_avoy5")
 
 [node name="Frame" type="MeshInstance3D" parent="Collectibles/Revolver/Meshes" index="0"]
 transform = Transform3D(0.186069, 0, 0, 0, 0.588008, 0, 0, 0, 1, 0, 3.97246, 0.997007)
-layers = 2
 material_override = SubResource("StandardMaterial3D_6sg06")
 mesh = SubResource("ArrayMesh_rad54")
 skeleton = NodePath("")
 
 [node name="Nozzle" type="MeshInstance3D" parent="Collectibles/Revolver/Meshes" index="1"]
 transform = Transform3D(0.111265, 0, 0, 0, 0.162447, 0, 0, 0, 0.105029, -0.00252414, 4.43099, -0.248088)
-layers = 2
 material_override = SubResource("StandardMaterial3D_0slvq")
 mesh = SubResource("ArrayMesh_80eml")
 skeleton = NodePath("")
 
 [node name="Hammer" type="MeshInstance3D" parent="Collectibles/Revolver/Meshes" index="2"]
 transform = Transform3D(0.0433905, 0, 0, 0, 0.0191722, 0, 0, 0, 0.0849425, 0, 4.47222, 1.59224)
-layers = 2
 material_override = SubResource("StandardMaterial3D_dlk6q")
 mesh = SubResource("ArrayMesh_yutoa")
 skeleton = NodePath("")
 
 [node name="Trigger" type="MeshInstance3D" parent="Collectibles/Revolver/Meshes" index="3"]
 transform = Transform3D(0.0422377, 0, 0, 0, 0.0124194, 0, 0, 0, 0.0550242, 0, 3.9449, 1.16414)
-layers = 2
 material_override = SubResource("StandardMaterial3D_j38yq")
 mesh = SubResource("ArrayMesh_gdjt5")
 skeleton = NodePath("")
 
 [node name="Grip" type="MeshInstance3D" parent="Collectibles/Revolver/Meshes" index="4"]
 transform = Transform3D(0.215957, 0, 0, 0, 0.215957, 0, 0, 0, 0.215957, 0.0034771, 3.40541, 1.701)
-layers = 2
 material_override = SubResource("StandardMaterial3D_sdrbb")
 mesh = SubResource("ArrayMesh_glqxd")
 skeleton = NodePath("")
 
 [node name="Cylinder" type="MeshInstance3D" parent="Collectibles/Revolver/Meshes" index="5"]
 transform = Transform3D(0.18375, 0, 0, 0, 0.274854, 0, 0, 0, 0.18375, 0.00440931, 4.33171, 0.950254)
-layers = 2
 material_override = SubResource("StandardMaterial3D_esr3t")
 mesh = SubResource("ArrayMesh_lnawt")
 skeleton = NodePath("")

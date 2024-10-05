@@ -9,9 +9,6 @@ script = ExtResource("2_ddnu6")
 WEAPON_DATA = ExtResource("3_4y0fh")
 attack_timer = NodePath("AttackTimer")
 
-[node name="Cube" parent="." index="0"]
-layers = 2
-
 [node name="AttackTimer" type="Timer" parent="." index="1"]
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

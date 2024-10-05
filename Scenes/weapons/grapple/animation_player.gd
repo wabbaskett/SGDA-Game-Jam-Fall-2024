@@ -1,5 +1,6 @@
 extends AnimationPlayer
 
+@export var grapple_sfx : AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +14,7 @@ func _process(delta):
 
 func _on_rope_launch_grapple():
 	play("shoot")
+	grapple_sfx.play()
 
 
 func _on_rope_stop_grapple():

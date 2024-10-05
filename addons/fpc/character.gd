@@ -21,7 +21,7 @@ extends CharacterBody3D
 @export var grapple_speed : float = 10.0
 
 ## How fast the character speeds up and slows down when Motion Smoothing is on.
-@export var acceleration : float = 10.0
+@export var motion_acceleration : float = 2
 ## How fast we can accelerate ourselfs in the air
 @export var air_acceleration : float = 0.02
 ## How high the player jumps.
@@ -138,7 +138,8 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ROPE.transform = GRAPPLESTART.transform
 	rope_scale = ROPE.scale
-	print(in_air_momentum)
+	print("air " + str(in_air_momentum))
+	print("smooth " + str(motion_smoothing))
 	
 	
 	# If the controller is rotated in a certain direction for game design purposes, redirect this rotation into the head.
@@ -207,6 +208,8 @@ func _physics_process(delta):
 	var readable_velocity : String = "X: " + str(vd[0]) + " Y: " + str(vd[1]) + " Z: " + str(vd[2])
 	$UserInterface/DebugPanel.add_property("Velocity", readable_velocity, 3)
 	
+	#print(is_on_floor())
+	
 	# Gravity
 	#gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # If the gravity changes during your game, uncomment this code
 	if not is_on_floor() and gravity and gravity_enabled:
@@ -240,7 +243,7 @@ func _physics_process(delta):
 			smallest_distance_to_hook = distance_to_hook
 			velocity_adjustment = 0.0
 		else:
-			print("bigger")
+			#print("bigger")
 			velocity_adjustment += grapple_adjustment
 			#velocity += (direction_to_hook * (grapple_acceleration + velocity_adjustment)* delta)
 			#transform.origin = lerp(transform.origin, hookpoint, 0.05)
@@ -285,25 +288,28 @@ func handle_jumping():
 func handle_movement(delta, input_dir):
 	var direction = input_dir.rotated(-HEAD.rotation.y)
 	direction = Vector3(direction.x, 0, direction.y)
-	move_and_slide()
 	if in_air_momentum:
 		if is_on_floor():
-			if motion_smoothing:
-				velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
-				velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
-			else:
-				velocity.x = direction.x * speed
-				velocity.z = direction.z * speed
+			#print("delta: " +str(delta))
+			#print(motion_acceleration)
+			#print(motion_acceleration)
+			#print("delta accel: " +str(delta*motion_acceleration))
+			velocity.x = lerp(velocity.x, direction.x * speed, motion_acceleration * delta)
+			velocity.z = lerp(velocity.z, direction.z * speed, motion_acceleration * delta)
+			
+				#velocity.x = direction.x * speed
+				#velocity.z = direction.z * speed
 		else: 
 			velocity.x += direction.x * air_acceleration
 			velocity.z += direction.z * air_acceleration
-	else:
-		if motion_smoothing:
-			velocity.x = lerp(velocity.x, (direction.x * speed), acceleration * delta)
-			velocity.z = lerp(velocity.z, (direction.z * speed), acceleration * delta)
-		else:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+	#else:
+		#if motion_smoothing:
+			#velocity.x = lerp(velocity.x, ((direction.x + .0001) * speed), acceleration * delta)
+			#velocity.z = lerp(velocity.z, ((direction.z + .0001) * speed), acceleration * delta)
+		#else:
+			#velocity.x = direction.x * speed
+			#velocity.z = direction.z * speed
+	move_and_slide()
 
 func handle_head_rotation():
 	HEAD.rotation_degrees.y -= mouseInput.x * mouse_sensitivity

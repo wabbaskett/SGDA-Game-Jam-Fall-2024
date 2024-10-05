@@ -3,7 +3,7 @@ class_name UI
 
 @export var health_bar: TextureProgressBar
 
-@onready var objective_label = %Objective
+#@onready var objective_label = %Objective
 @onready var hours_label = %HoursTimer
 @onready var mins_label = %MinutesTimer
 @onready var secs_label = %SecondsTimer
@@ -17,8 +17,10 @@ var secs_passed: int
 var mins_passed: int
 var hours_passed: int
 var time_limit_ms : int
+var time_game_started : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	time_game_started = Time.get_ticks_msec()
 	time_limit_ms = minutes_time_limit * 60 * 1000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,7 +28,7 @@ func _process(delta):
 	pass
 
 func _on_timer_timeout():
-	var time_left_ms = time_limit_ms - Time.get_ticks_msec()
+	var time_left_ms = time_limit_ms - (Time.get_ticks_msec() - time_game_started)
 	var time_left_sec = time_left_ms / 1000
 	
 	secs_passed = time_left_sec % 60
