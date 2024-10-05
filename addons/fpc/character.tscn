@@ -155,6 +155,7 @@ _data = {
 "crouch": SubResource("Animation_5ec5e")
 }
 
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmbsl"]
 resource_name = "Material.001"
 cull_mode = 2
@@ -444,6 +445,7 @@ unique_name_in_owner = true
 [node name="Weapon" parent="Head/Camera/WeaponRig" node_paths=PackedStringArray("CAMERA") instance=ExtResource("2_rpwmn")]
 transform = Transform3D(0.991696, -0.117536, 0.0521674, 0.121477, 0.989348, -0.0801989, -0.0421854, 0.0858701, 0.995413, 1.6, -1.4, -2.21)
 CAMERA = NodePath("../..")
+
 WEAPON = Array[ExtResource("3_a8dxt")]([ExtResource("6_kxeo8")])
 
 [node name="GrappleStart" type="Marker3D" parent="Head/Camera/WeaponRig"]
