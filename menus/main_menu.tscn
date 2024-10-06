@@ -24,7 +24,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("1_d48ww")
 theme_override_font_sizes/font_size = 60
-text = "Mold 🤤"
+text = "Over_Grapple"
 horizontal_alignment = 1
 vertical_alignment = 1
 
