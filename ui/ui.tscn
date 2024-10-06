@@ -285,6 +285,7 @@ offset_top = 159.0
 offset_right = 407.0
 offset_bottom = 234.0
 text = "Collectibles: 0 / 10"
+editable = false
 script = ExtResource("9_3nlbl")
 
 [node name="LoseLabel" type="Label" parent="Control"]

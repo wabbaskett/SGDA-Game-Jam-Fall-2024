@@ -11,6 +11,7 @@ func _ready() :
 func _on_win() :
 	self.paused = true
 	$"../../../WinLabel".visible = true
+	$"../1SecTimer".paused = true
 
 func _on_timeout() -> void:
 	emit_signal("lost")
