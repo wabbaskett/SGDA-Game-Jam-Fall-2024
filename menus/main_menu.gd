@@ -36,3 +36,8 @@ func focus_button() -> void:
 		var button: Button = buttons_v_box.get_child(0)
 		if button is Button:
 			button.grab_focus()
+
+
+func _on_visibility_changed():
+	if visible:
+		focus_button()

@@ -286,6 +286,8 @@ offset_right = 407.0
 offset_bottom = 234.0
 text = "Collectibles: 0 / 10"
 editable = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
 script = ExtResource("9_3nlbl")
 
 [node name="LoseLabel" type="Label" parent="Control"]
@@ -318,6 +320,12 @@ offset_right = -0.508972
 offset_bottom = -0.160004
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 theme_override_font_sizes/font_size = 50
 text = "Main Menu"
 script = ExtResource("10_5ymcb")
@@ -352,6 +360,12 @@ offset_right = -0.508972
 offset_bottom = -0.160004
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 theme_override_font_sizes/font_size = 50
 text = "Main Menu"
 script = ExtResource("10_5ymcb")
@@ -379,5 +393,7 @@ end_playlist = Array[AudioStreamMP3]([ExtResource("12_tuxxk"), ExtResource("13_6
 [connection signal="timeout" from="Control/Panel/Timer/1SecTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Control/Panel/Timer/1SecTimer" to="Control/Panel/Timer/1SecTimer" method="_on_timeout"]
 [connection signal="pressed" from="Control/LoseLabel/Button" to="Control/LoseLabel/Button" method="_on_pressed"]
+[connection signal="visibility_changed" from="Control/LoseLabel/Button" to="Control/LoseLabel/Button" method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/WinLabel/Button" to="Control/WinLabel/Button" method="_on_pressed"]
+[connection signal="visibility_changed" from="Control/WinLabel/Button" to="Control/WinLabel/Button" method="_on_visibility_changed"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
