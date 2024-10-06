@@ -1,6 +1,8 @@
+
 [gd_scene load_steps=100 format=4 uid="uid://8c5l207wvev3"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_4x8x7"]
+[ext_resource type="Script" path="res://level.gd" id="1_6md5l"]
 [ext_resource type="PackedScene" uid="uid://bxcv0xuek8kaq" path="res://map.tscn" id="2_ce245"]
 [ext_resource type="PackedScene" uid="uid://b7hqj7pcs4byd" path="res://shelf.tscn" id="4_pgp8t"]
 [ext_resource type="PackedScene" uid="uid://dgm42oaba5uw8" path="res://armoire.tscn" id="4_s6nfj"]
@@ -672,6 +674,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qjcm1")
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_6md5l")
 
 [node name="Character" parent="." instance=ExtResource("1_4x8x7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86479, 48.5319, -53.5654)
