@@ -126,11 +126,10 @@ libraries = {
 script = ExtResource("2_evqer")
 grapple_sfx = NodePath("../AudioStreamPlayer")
 
-[node name="Rope" type="MeshInstance3D" parent="." index="3" instance=ExtResource("2_u6i5q")]
+[node name="Rope" parent="." index="3" instance=ExtResource("2_u6i5q")]
 transform = Transform3D(-1.74846e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.74846e-08, 3.61972, 4.94794, -4.76837e-07)
 visible = false
 mesh = SubResource("ArrayMesh_niagp")
-skeleton = NodePath("")
 script = ExtResource("3_dk2sn")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
