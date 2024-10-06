@@ -37,20 +37,11 @@ size_flags_vertical = 6
 [node name="Start Button" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Exit Button")
-focus_neighbor_bottom = NodePath("../Options Button")
 theme = ExtResource("1_d48ww")
 text = "Start Game"
 
-[node name="Options Button" type="Button" parent="VBoxContainer/Buttons"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Start Button")
-focus_neighbor_bottom = NodePath("../Exit Button")
-theme = ExtResource("1_d48ww")
-text = "Options"
-
 [node name="Exit Button" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Options Button")
 focus_neighbor_bottom = NodePath("../Start Button")
 theme = ExtResource("1_d48ww")
 text = "Exit"
